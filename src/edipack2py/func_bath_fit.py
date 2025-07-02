@@ -44,24 +44,20 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
        
        * :code:`3`: in the single-impurity case,  an array of \
          the shape [ :data:`Nspin` :math:`\\cdot` :data:`Norb` ,  :data:`Nspin` \
-         :math:`\\cdot` :data:`Norb` , :code:`Lfit` ]. 
+         :math:`\\cdot` :data:`Norb` , :data:`Lmats` ]. 
        * :code:`3`: in the real-space DMFT case, an array of \
          the shape [ :code:`Nlat` :math:`\\cdot` :data:`Nspin` :math:`\\cdot` \
          :data:`Norb` ,  :code:`Nlat` :math:`\\cdot` :data:`Nspin` :math:`\\cdot` \
-         :data:`Norb` , :code:`Lfit` ]
+         :data:`Norb` , :data:`Lmats` ]
        * :code:`4`: in the real-space DMFT case, an array of \
          the shape [ :code:`Nlat` ,  :data:`Nspin` :math:`\\cdot` \
-         :data:`Norb` ,  :data:`Nspin` :math:`\\cdot` :data:`Norb` , :code:`Lfit` ]
+         :data:`Norb` ,  :data:`Nspin` :math:`\\cdot` :data:`Norb` , :data:`Lmats` ]
        * :code:`5`: in the single-impurity case, an array of \
          the shape [ :data:`Nspin` ,  :data:`Nspin` ,  :data:`Norb` ,  \
-         :data:`Norb` , :code:`Lfit` ]
+         :data:`Norb` , :data:`Lmats` ]
        * :code:`6`: in the real-space DMFT case, an array of \
          the shape [ :code:`Nlat` ,  :data:`Nspin` ,  :data:`Nspin` ,  \
-         :data:`Norb` ,  :data:`Norb` , :code:`Lfit` ]
-       
-       where :code:`Lfit` is a given number of frequencies.
-
-       
+         :data:`Norb` ,  :data:`Norb` , :data:`Lmats` ]       
      
       :type ispin: int 
       :param ispin: spin species to be fitted. For the normal case, \
