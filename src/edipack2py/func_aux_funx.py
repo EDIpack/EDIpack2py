@@ -292,7 +292,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
                 )
             print(
                 colorprefix
-                + "    " * (np.prod(np.shape(errvec)) > 1)
+                + "    " * int(np.prod(np.shape(errvec)) > 1)
                 + "error="
                 + self.COLOREND
                 + f"{err:.6e}"
