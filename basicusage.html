@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic usage &mdash; EDIpack2py 5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=aface3f9" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=ce74c6a2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global variables" href="globvars.html" />
+    <link rel="prev" title="EDIpack2py Installation" href="pyinstallation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EDIpack2py
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pyinstallation.html">EDIpack2py Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#install-with-pip">Install with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#install-from-source">Install from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-import">Module import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-dmft-loop">Minimal DMFT loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="globvars.html">Global variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.beta"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.beta</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jh"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.dmft_error"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.dmft_error</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.ed_total_ud"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_total_ud</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.ed_twin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_twin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.eps"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.eps</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jx"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jp"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lmats"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lmats</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.LOGfile"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.LOGfile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lpos"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lpos</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lreal"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lreal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Ltau"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ltau</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nbath"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nbath</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nloop"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nloop</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Norb"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Norb</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nph"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nph</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.nread"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.nread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nspin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nspin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nsuccess"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nsuccess</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.sb_field"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.sb_field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Uloc"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Uloc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Ust"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ust</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.wini"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wini</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.wfin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wfin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmax"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmax</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmu"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmu</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="funcs/0_readinput.html">Input file manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/0_readinput.html#edipack2py.global_env.read_input"><code class="docutils literal notranslate"><span class="pre">read_input()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/1_solver.html">Impurity Problem Initialization, Solution and Finalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.finalize_solver"><code class="docutils literal notranslate"><span class="pre">finalize_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.init_solver"><code class="docutils literal notranslate"><span class="pre">init_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.set_hloc"><code class="docutils literal notranslate"><span class="pre">set_hloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/2_bath.html">Bath Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.bath_inspect"><code class="docutils literal notranslate"><span class="pre">bath_inspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.break_symmetry_bath"><code class="docutils literal notranslate"><span class="pre">break_symmetry_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.chi2_fitgf"><code class="docutils literal notranslate"><span class="pre">chi2_fitgf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.get_bath_dimension"><code class="docutils literal notranslate"><span class="pre">get_bath_dimension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.orb_equality_bath"><code class="docutils literal notranslate"><span class="pre">orb_equality_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.orb_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">orb_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.ph_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">ph_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.save_array_as_bath"><code class="docutils literal notranslate"><span class="pre">save_array_as_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.set_hgeneral"><code class="docutils literal notranslate"><span class="pre">set_hgeneral()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.set_hreplica"><code class="docutils literal notranslate"><span class="pre">set_hreplica()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.spin_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">spin_symmetrize_bath()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/3_inputoutput.html">Input / Output Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_dens"><code class="docutils literal notranslate"><span class="pre">get_dens()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_docc"><code class="docutils literal notranslate"><span class="pre">get_docc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_eimp"><code class="docutils literal notranslate"><span class="pre">get_eimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_mag"><code class="docutils literal notranslate"><span class="pre">get_mag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_phi"><code class="docutils literal notranslate"><span class="pre">get_phi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_gimp"><code class="docutils literal notranslate"><span class="pre">get_gimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_sigma"><code class="docutils literal notranslate"><span class="pre">get_sigma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_g0and"><code class="docutils literal notranslate"><span class="pre">get_g0and()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_delta"><code class="docutils literal notranslate"><span class="pre">get_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_chi"><code class="docutils literal notranslate"><span class="pre">get_chi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_impurity_rdm"><code class="docutils literal notranslate"><span class="pre">get_impurity_rdm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/4_auxiliary.html">Auxiliary procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.check_convergence"><code class="docutils literal notranslate"><span class="pre">check_convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.get_bath_type"><code class="docutils literal notranslate"><span class="pre">get_bath_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.get_ed_mode"><code class="docutils literal notranslate"><span class="pre">get_ed_mode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.search_variable"><code class="docutils literal notranslate"><span class="pre">search_variable()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html">Interaction matrix parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.add_twobody_operator"><code class="docutils literal notranslate"><span class="pre">add_twobody_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.reset_umatrix"><code class="docutils literal notranslate"><span class="pre">reset_umatrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TRIQS compatibility layer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="edipack2triqs.html">TRIQS compatibility layer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack2py">EDIpack2py on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack">EDIpack on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SciFortran/SciFortran">SciFortran on GitHub</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EDIpack2py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basic usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basicusage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="pyinstallation.html" class="btn btn-neutral float-left" title="EDIpack2py Installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="globvars.html" class="btn btn-neutral float-right" title="Global variables" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-usage">
+<h1>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h1>
+<section id="module-import">
+<h2>Module import<a class="headerlink" href="#module-import" title="Link to this heading"></a></h2>
+<p>Upon import, the <cite>edipack2py</cite> python module will try to load the dynamic library <code class="xref py py-data docutils literal notranslate"><span class="pre">libedipack_cbindings.so</span></code> , provided by <cite>EDIpack</cite> and containing the c-fortran bindings. The module will try the following routes, in order of priority:</p>
+<ul class="simple">
+<li><p>As a first choice, the user can override the location of the library by exporting an environment variable called <code class="code docutils literal notranslate"><span class="pre">EDIPACK_PATH</span></code> .</p></li>
+<li><p>By default, the module detects the presence of the Fortran libraries via <cite>pkg-config</cite>. If <cite>EDIpack</cite> was loaded as an environment module, the import will automatically work.</p></li>
+<li><p>The <cite>EDIpack</cite> library provides a <cite>.pc</cite> , located by default in the <code class="code docutils literal notranslate"><span class="pre">~/.pkgconfig.d</span></code> directory. If the environment variable <code class="code docutils literal notranslate"><span class="pre">PKG_CONFIG_PATH</span></code> is set to include the location of the <cite>.pc</cite> file, loading the library via <cite>pkg-config</cite> will work as well.</p></li>
+<li><p>As a last resort <code class="code docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> and <code class="code docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> are scanned.</p></li>
+</ul>
+<p>If none of the previous attempts succeeds, the module will not not load correctly and an error message will be printed.</p>
+<p>The <a class="reference external" href="https://www.github.com/EDIpack/EDIpack/">EDIpack</a> library offers, as an independent module, an interface for real-space DMFT functions (see relevant <a class="reference external" href="https://edipack.github.io/EDIpack/">documentation</a>). <cite>EDIpack2py</cite> is in principle capable of solving real-space DMFT problems, provided the Fortran libraries were compiled with the real-space DMFT support enabled. If that is not the case, the python module will disable the real-space DMFT functions, and invoking them will result in a <code class="code docutils literal notranslate"><span class="pre">RuntimeError</span></code>. The user can check the availability of the real-space DMFT interface by printing the value of <code class="code docutils literal notranslate"><span class="pre">edipack2py.global_env.has_ineq</span></code>.</p>
+<p>The <cite>edipack2py</cite> module consists mainly of a class called <code class="code docutils literal notranslate"><span class="pre">global_env</span></code>. The global variables and the functions of the <cite>EDIpack</cite> library that are exposed to the user are properties and methods of this class. The class needs to be imported at the beginning of the python script, along with other useful modules. <a class="reference external" href="https://numpy.org/">Numpy</a> is necessary, while <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/">mpi4py</a> is strongly recommended.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">mpi4py</span>
+<span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">from</span> <span class="nn">edipack2py</span> <span class="kn">import</span> <span class="n">global_env</span> <span class="k">as</span> <span class="n">ed</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
+</pre></div>
+</div>
+</section>
+<section id="minimal-dmft-loop">
+<h2>Minimal DMFT loop<a class="headerlink" href="#minimal-dmft-loop" title="Link to this heading"></a></h2>
+<p>An example driver is provided in the <code class="code docutils literal notranslate"><span class="pre">examples</span></code> folder of the <cite>EDIpack2py</cite> repository. The basic steps to follow to run a single DMFT loop are the following:</p>
+<p>Read the input file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ed</span><span class="o">.</span><span class="n">read_input</span><span class="p">(</span><span class="s2">&quot;inputED.conf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will read an input file or generate a template one if no such file is found. The template will have the <code class="code docutils literal notranslate"><span class="pre">used.</span></code> prefix, which will need to be removed. An <a class="reference external" href="https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/inputED.conf">example</a> of input file with a brief description of the relevant global variables is provided in the EDIpack repo.</p>
+<p>Set the local Hamiltonian</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ed</span><span class="o">.</span><span class="n">set_hloc</span><span class="p">(</span><span class="n">hloc</span><span class="o">=</span><span class="n">Hloc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If  <a class="reference external" href="https://edipack.github.io/EDIpack/edipack/03_general/01_ed_input_vars.html#f/ed_input_vars/bath_type" title="(in EDIpack)"><code class="xref f f-var docutils literal notranslate"><span class="pre">bath_type</span></code></a>  is <code class="code docutils literal notranslate"><span class="pre">REPLICA</span></code> or <code class="code docutils literal notranslate"><span class="pre">GENERAL</span></code>, the replica matrix has to be initialized via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ed</span><span class="o">.</span><span class="n">set_hreplica</span><span class="p">(</span><span class="n">hvec</span><span class="p">,</span> <span class="n">lambdavec</span><span class="p">)</span>
+<span class="n">ed</span><span class="o">.</span><span class="n">set_general</span><span class="p">(</span><span class="n">hvec</span><span class="p">,</span> <span class="n">lambdavec</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="code docutils literal notranslate"><span class="pre">hvec</span></code> and <code class="code docutils literal notranslate"><span class="pre">lambdavec</span></code> are arrays of the proper size (see function documentation).</p>
+<p>The solver needs to be initialized via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">init_solver</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Optionally, such as when real-space DMFT is used, the bath can be already allocated as an array, the dimension of which has to be given by the output of <code class="code docutils literal notranslate"><span class="pre">Nb</span></code> = <code class="xref py py-func docutils literal notranslate"><span class="pre">ed.get_bath_dimension()</span></code> for single-impurity DMFT and <code class="code docutils literal notranslate"><span class="pre">[Nlat,Nb]</span></code> for real-space DMFT, where <code class="code docutils literal notranslate"><span class="pre">Nlat</span></code> is the number of inequivalent impurities</p>
+<p>The impurity problem is then solved via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ed</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The self-energy needs to be retrieved in order to calculate the local lattice Green’s function, via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_sigma</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The local Green’s function calculation is left to the user, as well as that of the Weiss field or the Delta function, to be fitted by the new bath.
+This latter step happens via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">chi2_fitgf</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span><span class="n">bath</span><span class="p">,</span><span class="n">ispin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">iorb</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(check the function documentation for more details), but alternatively a fitting routine of the user’s choice can be employed.
+Convergence can be checked via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">err</span><span class="p">,</span><span class="n">converged</span><span class="o">=</span><span class="n">ed</span><span class="o">.</span><span class="n">check_convergence</span><span class="p">(</span><span class="n">Delta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:],</span><span class="n">ed</span><span class="o">.</span><span class="n">dmft_error</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">ed</span><span class="o">.</span><span class="n">Nloop</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and, finally, the solution environment can be cleaned up via</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ed</span><span class="o">.</span><span class="n">finalize_solver</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>some or all of the steps above can be inserted in the DMFT convergence loop.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyinstallation.html" class="btn btn-neutral float-left" title="EDIpack2py Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="globvars.html" class="btn btn-neutral float-right" title="Global variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Lorenzo Crippa and Adriano Amaricci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
