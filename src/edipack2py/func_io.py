@@ -1406,8 +1406,6 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
 
     zetaflag = 1
 
-    zeta = np.asfortranarray(zeta)
-
     if axis is None:
         raise ValueError("Axis is required")
     else:
@@ -1437,6 +1435,8 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
             else:
                 raise ValueError("axis can only be m, r or t")
             nfreq = np.shape(zeta)[0]
+
+    zeta = np.asfortranarray(zeta)
 
     if chan.lower() == "spin" or chan.lower() == "s":
         chi = np.zeros(
