@@ -26,6 +26,44 @@ The exposed global variables can be accessed as properties of the :class:`edipac
    
    :type: float
    :default: 1000.0
+   
+  
+.. data:: edipack2py.global_env.chidens_flag
+
+   Whether to enable the calculation of charge susceptibility.
+   
+   Accesses :f:var:`chidens_flag`
+      
+   :type: bool
+   :default: False
+
+.. data:: edipack2py.global_env.chiexct_flag
+
+   Whether to enable the calculation of exciton susceptibility.
+   
+   Accesses :f:var:`chiexct_flag`
+      
+   :type: bool
+   :default: False 
+  
+.. data:: edipack2py.global_env.chipair_flag
+
+   Whether to enable the calculation of pair susceptibility.
+   
+   Accesses :f:var:`chipair_flag`
+      
+   :type: bool
+   :default: False
+      
+.. data:: edipack2py.global_env.chispin_flag
+
+   Whether to enable the calculation of spin susceptibility.
+   
+   Accesses :f:var:`chispin_flag`
+      
+   :type: bool
+   :default: False   
+   
 
 .. data:: edipack2py.global_env.Jh
 

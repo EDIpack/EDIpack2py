@@ -297,6 +297,30 @@ try:
         c_bool.in_dll(dynamic_library, "ed_twin"),
         "value",
     )
+    add_global_variable(
+        global_env,
+        "chispin_flag",
+        c_bool.in_dll(dynamic_library, "chispin_flag"),
+        "value",
+    )
+    add_global_variable(
+        global_env,
+        "chidens_flag",
+        c_bool.in_dll(dynamic_library, "chidens_flag"),
+        "value",
+    )
+    add_global_variable(
+        global_env,
+        "chipair_flag",
+        c_bool.in_dll(dynamic_library, "chipair_flag"),
+        "value",
+    )
+    add_global_variable(
+        global_env,
+        "chiexct_flag",
+        c_bool.in_dll(dynamic_library, "chiexct_flag"),
+        "value",
+    )
 except Exception:
     print(
         "Could not setup global vars. Is EDIpack (or EDIpack2ineq) installed?"
