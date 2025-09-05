@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "edipack2py"
-version = "5.4.0"
+version = "5.4.1"
 description = "EDIpack Python API"
 license = { text = "GPL-3.0-or-later" }
 readme = "README.md"
