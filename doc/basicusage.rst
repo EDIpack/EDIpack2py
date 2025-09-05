@@ -37,7 +37,7 @@ Read the input file
 
     ed.read_input("inputED.conf")
     
-This will read an input file or generate a template one if no such file is found. The template will have the :code:`used.` prefix, which will need to be removed. An `example <https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/inputED.conf>`_ of input file with a brief description of the relevant global variables is provided in the EDIpack repo.
+This will read an input file or generate a template one if no such file is found. The template will have the :code:`used.` prefix, which will need to be removed. An `example <https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/hm_bethe/inputED.conf>`_ of input file with a brief description of the relevant global variables is provided in the EDIpack repo.
     
 Set the local Hamiltonian
 
