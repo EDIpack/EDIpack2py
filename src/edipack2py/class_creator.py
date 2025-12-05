@@ -229,7 +229,6 @@ try:
         c_int.in_dll(dynamic_library, "LOGfile"),
         "value",
     )
-
     add_global_variable(
         global_env,
         "Uloc",
@@ -319,6 +318,12 @@ try:
         global_env,
         "chiexct_flag",
         c_bool.in_dll(dynamic_library, "chiexct_flag"),
+        "value",
+    )
+    add_global_variable(
+        global_env,
+        "pair_field",
+        ARRAY(c_double, 15).in_dll(dynamic_library, "pair_field"),
         "value",
     )
 except Exception:

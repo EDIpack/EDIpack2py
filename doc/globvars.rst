@@ -239,6 +239,16 @@ The exposed global variables can be accessed as properties of the :class:`edipac
    :type: int
    :default: 1
    
+.. data:: edipack2py.global_env.pair_field
+
+   Pair field per orbital coupling to s-wave order parameter component 
+   !which explicitly appears in the impurity Hamiltonian 
+   
+   Accesses :f:var:`pair_field`.
+   
+   :type: float
+   :default: zero
+   
 .. data:: edipack2py.global_env.sb_field
 
    Value of a symmetry breaking field for magnetic solutions
