@@ -6,7 +6,7 @@ import types
 # set_hloc
 
 
-def set_hloc(self, hloc, Nlat=None):
+def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
     """
     This function sets the local Hamiltonian of the impurity problem.
 
@@ -25,10 +25,12 @@ def set_hloc(self, hloc, Nlat=None):
      * [ :code:`Nlat` , :data:`Nspin` , :data:`Nspin` , :data:`Norb` ,  \
        :data:`Norb` ]: single-impurity case, 5-dimensional array.
 
-     The array is ordered in F convention inside the function.
-
      **Note**: the way the EDIpack library passes from 1 comulative to 2 or 3 \
                running indices is, from slower to faster: ``lat``, ``spin``, ``orb``
+    
+    :type hloc_anomalous: np.array(dtype=complex)
+    :param hloc_anomalous: Local Hamiltonian matrix. Anomalous terms for SC.
+     Must have the same shape as :var:`hloc`.
 
     :type Nlat: int
     :param Nlat: Number of inequivalent sites for real-space DMFT. The function \
@@ -44,12 +46,14 @@ def set_hloc(self, hloc, Nlat=None):
     ed_set_Hloc_single_N2 = self.library.ed_set_Hloc_single_N2
     ed_set_Hloc_single_N2.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
+        np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
     ]
     ed_set_Hloc_single_N2.restype = None
 
     ed_set_Hloc_single_N4 = self.library.ed_set_Hloc_single_N4
     ed_set_Hloc_single_N4.argtypes = [
+        np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
     ]
@@ -58,9 +62,8 @@ def set_hloc(self, hloc, Nlat=None):
     if self.has_ineq:
         ed_set_Hloc_lattice_N2 = self.library.ed_set_Hloc_lattice_N2
         ed_set_Hloc_lattice_N2.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=2, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -70,6 +73,9 @@ def set_hloc(self, hloc, Nlat=None):
         if self.has_ineq:
             ed_set_Hloc_lattice_N3 = self.library.ed_set_Hloc_lattice_N3
             ed_set_Hloc_lattice_N3.argtypes = [
+                np.ctypeslib.ndpointer(
+                    dtype=complex, ndim=3, flags="F_CONTIGUOUS"
+                ),
                 np.ctypeslib.ndpointer(
                     dtype=complex, ndim=3, flags="F_CONTIGUOUS"
                 ),
@@ -86,6 +92,9 @@ def set_hloc(self, hloc, Nlat=None):
                     dtype=complex, ndim=5, flags="F_CONTIGUOUS"
                 ),
                 np.ctypeslib.ndpointer(
+                    dtype=complex, ndim=5, flags="F_CONTIGUOUS"
+                ),
+                np.ctypeslib.ndpointer(
                     dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
                 ),
                 c_int,
@@ -93,20 +102,33 @@ def set_hloc(self, hloc, Nlat=None):
             ed_set_Hloc_lattice_N5.restype = None
 
     try:
-        hloc = np.asarray(hloc, order="F")
+        hloc = np.asarray(hloc, dtype=complex, order="F")
         dim_hloc = np.asarray(np.shape(hloc), dtype=np.int64, order="F")
         self.dim_hloc = len(dim_hloc)
+        if hloc_anomalous is not None:
+            hloc_anomalous = np.asarray(
+                hloc_anomalous, dtype=complex, order="F"
+            )
+            dim_hloc_anomalous = np.asarray(
+                np.shape(hloc_anomalous), dtype=np.int64, order="F"
+            )
+            if not np.array_equal(dim_hloc, dim_hloc_anomalous):
+                raise ValueError(
+                    "Hloc and Hloc_anomalous must have the same shape"
+                )
+        else:
+            hloc_anomalous = np.zeros_like(hloc)
     except Exception:
         raise ValueError("In Edipack, set_Hloc needs an Hloc defined")
 
     if Nlat is not None:
         if self.has_ineq:
             if len(dim_hloc) == 2:
-                ed_set_Hloc_lattice_N2(hloc, dim_hloc, Nlat)
+                ed_set_Hloc_lattice_N2(hloc, hloc_anomalous, dim_hloc, Nlat)
             elif len(dim_hloc) == 3:
-                ed_set_Hloc_lattice_N3(hloc, dim_hloc, Nlat)
+                ed_set_Hloc_lattice_N3(hloc, hloc_anomalous, dim_hloc, Nlat)
             elif len(dim_hloc) == 5:
-                ed_set_Hloc_lattice_N5(hloc, dim_hloc, Nlat)
+                ed_set_Hloc_lattice_N5(hloc, hloc_anomalous, dim_hloc, Nlat)
             else:
                 raise ValueError(
                     "ed_set_Hloc_lattice: dimension must be 2,3 or 5"
@@ -117,9 +139,9 @@ def set_hloc(self, hloc, Nlat=None):
             )
     else:
         if len(dim_hloc) == 2:
-            ed_set_Hloc_single_N2(hloc, dim_hloc)
+            ed_set_Hloc_single_N2(hloc, hloc_anomalous, dim_hloc)
         elif len(dim_hloc) == 4:
-            ed_set_Hloc_single_N4(hloc, dim_hloc)
+            ed_set_Hloc_single_N4(hloc, hloc_anomalous, dim_hloc)
         else:
             raise ValueError("ed_set_Hloc_site: dimension must be 2 or 4")
     return
@@ -254,9 +276,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
             self.gooditer = 0  # reset good iterations count
         self.whichiter += 1
         conv_bool = (
-            (err < threshold)
-            and (self.gooditer > N1)
-            and (self.whichiter < N2)
+            (err < threshold) and (self.gooditer > N1) and (self.whichiter < N2)
         ) or (self.whichiter >= N2)
 
         # write out
@@ -285,10 +305,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
         if self.whichiter < N2:
             if np.prod(np.shape(errvec)) > 1:
                 print(
-                    colorprefix
-                    + "max error="
-                    + self.COLOREND
-                    + f"{errmax:.6e}"
+                    colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}"
                 )
             print(
                 colorprefix
@@ -299,18 +316,12 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
             )
             if np.prod(np.shape(errvec)) > 1:
                 print(
-                    colorprefix
-                    + "min error="
-                    + self.COLOREND
-                    + f"{errmin:.6e}"
+                    colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}"
                 )
         else:
             if np.prod(np.shape(errvec)) > 1:
                 print(
-                    colorprefix
-                    + "max error="
-                    + self.COLOREND
-                    + f"{errmax:.6e}"
+                    colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}"
                 )
             print(
                 colorprefix
@@ -321,10 +332,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
             )
             if np.prod(np.shape(errvec)) > 1:
                 print(
-                    colorprefix
-                    + "min error="
-                    + self.COLOREND
-                    + f"{errmin:.6e}"
+                    colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}"
                 )
             print("Not converged after " + str(N2) + " iterations.")
             with open("ERROR.README", "a") as file:

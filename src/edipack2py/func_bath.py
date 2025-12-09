@@ -99,9 +99,7 @@ def set_hreplica(self, hvec, lambdavec):
             self.library.init_Hreplica_symmetries_lattice_d5
         )
         init_hreplica_symmetries_lattice_d5.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -116,9 +114,7 @@ def set_hreplica(self, hvec, lambdavec):
             self.library.init_Hreplica_symmetries_lattice_d3
         )
         init_hreplica_symmetries_lattice_d3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -241,9 +237,7 @@ def set_hgeneral(self, hvec, lambdavec):
             self.library.init_Hgeneral_symmetries_lattice_d5
         )
         init_hgeneral_symmetries_lattice_d5.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -258,9 +252,7 @@ def set_hgeneral(self, hvec, lambdavec):
             self.library.init_Hgeneral_symmetries_lattice_d3
         )
         init_hgeneral_symmetries_lattice_d3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -380,9 +372,7 @@ def break_symmetry_bath(self, bath, field, sign, save=True):
     bath_shape = np.asarray(np.shape(bath), dtype=np.int64, order="F")
 
     if (len(bath_shape)) == 1:
-        break_symmetry_bath_site(
-            bath, bath_shape, field, float(sign), save_int
-        )
+        break_symmetry_bath_site(bath, bath_shape, field, float(sign), save_int)
     else:
         if self.has_ineq:
             sign = sign * np.ones(bath_shape[0], order="F")
@@ -500,9 +490,7 @@ def orb_symmetrize_bath(self, bath, orb1, orb2, save=True):
     bath = np.asfortranarray(bath)
     bath_shape = np.asarray(np.shape(bath), dtype=np.int64, order="F")
     if (len(bath_shape)) == 1:
-        orb_symmetrize_bath_site(
-            bath, bath_shape, orb1 + 1, orb2 + 1, save_int
-        )
+        orb_symmetrize_bath_site(bath, bath_shape, orb1 + 1, orb2 + 1, save_int)
     else:
         if self.has_ineq:
             orb_symmetrize_bath_ineq(

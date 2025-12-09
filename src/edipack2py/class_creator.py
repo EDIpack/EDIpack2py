@@ -356,9 +356,7 @@ except Exception:
 # read_input
 from . import func_read_input
 
-global_env.read_input = types.MethodType(
-    func_read_input.read_input, global_env
-)
+global_env.read_input = types.MethodType(func_read_input.read_input, global_env)
 
 # aux_funx
 from . import func_aux_funx
