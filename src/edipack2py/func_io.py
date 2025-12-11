@@ -138,9 +138,7 @@ def get_mag(self, icomp=None, ilat=None, iorb=None):
             return magvec
     else:
         if self.has_ineq:
-            magvec = np.zeros(
-                [self.Nineq, 3, aux_norb], dtype=float, order="F"
-            )
+            magvec = np.zeros([self.Nineq, 3, aux_norb], dtype=float, order="F")
             ed_get_mag_n3_wrap(magvec, self.Nineq)
             magvec = np.ascontiguousarray(magvec)
 

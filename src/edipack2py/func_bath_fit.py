@@ -148,13 +148,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
     chi2_fitgf_single_superc_n5.restype = None
     if self.has_ineq:
         # lattice normal
-        chi2_fitgf_lattice_normal_n3 = (
-            self.library.chi2_fitgf_lattice_normal_n3
-        )
+        chi2_fitgf_lattice_normal_n3 = self.library.chi2_fitgf_lattice_normal_n3
         chi2_fitgf_lattice_normal_n3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -166,13 +162,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         ]
         chi2_fitgf_lattice_normal_n3.restype = None
 
-        chi2_fitgf_lattice_normal_n4 = (
-            self.library.chi2_fitgf_lattice_normal_n4
-        )
+        chi2_fitgf_lattice_normal_n4 = self.library.chi2_fitgf_lattice_normal_n4
         chi2_fitgf_lattice_normal_n4.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -184,13 +176,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         ]
         chi2_fitgf_lattice_normal_n4.restype = None
 
-        chi2_fitgf_lattice_normal_n6 = (
-            self.library.chi2_fitgf_lattice_normal_n6
-        )
+        chi2_fitgf_lattice_normal_n6 = self.library.chi2_fitgf_lattice_normal_n6
         chi2_fitgf_lattice_normal_n6.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=6, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=6, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -203,19 +191,13 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         chi2_fitgf_lattice_normal_n6.restype = None
 
         # lattice superc
-        chi2_fitgf_lattice_superc_n3 = (
-            self.library.chi2_fitgf_lattice_superc_n3
-        )
+        chi2_fitgf_lattice_superc_n3 = self.library.chi2_fitgf_lattice_superc_n3
         chi2_fitgf_lattice_superc_n3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -227,19 +209,13 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         ]
         chi2_fitgf_lattice_superc_n3.restype = None
 
-        chi2_fitgf_lattice_superc_n4 = (
-            self.library.chi2_fitgf_lattice_superc_n4
-        )
+        chi2_fitgf_lattice_superc_n4 = self.library.chi2_fitgf_lattice_superc_n4
         chi2_fitgf_lattice_superc_n4.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
@@ -251,19 +227,13 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         ]
         chi2_fitgf_lattice_superc_n4.restype = None
 
-        chi2_fitgf_lattice_superc_n6 = (
-            self.library.chi2_fitgf_lattice_superc_n6
-        )
+        chi2_fitgf_lattice_superc_n6 = self.library.chi2_fitgf_lattice_superc_n6
         chi2_fitgf_lattice_superc_n6.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=6, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=6, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=6, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=complex, ndim=6, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),
