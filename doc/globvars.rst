@@ -249,6 +249,15 @@ The exposed global variables can be accessed as properties of the :class:`edipac
    :type: float
    :default: zero
    
+.. data:: edipack2py.global_env.rdm_flag
+
+   Whether to enable the calculation of reduced density matrix.
+   
+   Accesses :f:var:`rdm_flag`
+      
+   :type: bool
+   :default: False   
+   
 .. data:: edipack2py.global_env.sb_field
 
    Value of a symmetry breaking field for magnetic solutions
