@@ -264,35 +264,27 @@ def get_phi(self, ilat=None, iorb=None, jorb=None, component=None):
 
     ed_get_phisc_n2_wrap = self.library.ed_get_phisc_n2
     ed_get_phisc_n2_wrap.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=float, ndim=2, flags="F_CONTIGUOUS"
-        )  # self
+        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
     ]
     ed_get_phisc_n2_wrap.restype = None
 
     ed_get_argsc_n2_wrap = self.library.ed_get_argsc_n2
     ed_get_argsc_n2_wrap.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=float, ndim=2, flags="F_CONTIGUOUS"
-        )  # self
+        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
     ]
     ed_get_argsc_n2_wrap.restype = None
 
     if self.has_ineq:
         ed_get_phisc_n3_wrap = self.library.ed_get_phisc_n3
         ed_get_phisc_n3_wrap.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=float, ndim=3, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=float, ndim=3, flags="F_CONTIGUOUS"),  # self
             c_int,  # Nlat
         ]
         ed_get_phisc_n3_wrap.restype = None
 
         ed_get_argsc_n3_wrap = self.library.ed_get_argsc_n3
         ed_get_argsc_n3_wrap.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=float, ndim=2, flags="F_CONTIGUOUS"
-            )  # self
+            np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
         ]
         ed_get_argsc_n3_wrap.restype = None
 
@@ -512,14 +504,10 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
     ed_get_sigma_site_n3 = self.library.get_sigma_site_n3
     ed_get_sigma_site_n3.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-        ),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
         c_int,  # axis
         c_int,  # typ
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dz
         c_int,  # zflag
     ]
@@ -527,14 +515,10 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
     ed_get_sigma_site_n5 = self.library.get_sigma_site_n5
     ed_get_sigma_site_n5.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-        ),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
         c_int,  # axis
         c_int,  # typ
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dz
         c_int,  # zflag
     ]
@@ -543,15 +527,11 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     if self.has_ineq:
         ed_get_sigma_lattice_n3 = self.library.get_sigma_lattice_n3
         ed_get_sigma_lattice_n3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -559,15 +539,11 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
         ed_get_sigma_lattice_n4 = self.library.get_sigma_lattice_n4
         ed_get_sigma_lattice_n4.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -575,15 +551,11 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
         ed_get_sigma_lattice_n6 = self.library.get_sigma_lattice_n6
         ed_get_sigma_lattice_n6.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -783,14 +755,10 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
     ed_get_gimp_site_n3 = self.library.get_gimp_site_n3
     ed_get_gimp_site_n3.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-        ),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
         c_int,  # axis
         c_int,  # typ
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dz
         c_int,  # zflag
     ]
@@ -798,14 +766,10 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
     ed_get_gimp_site_n5 = self.library.get_gimp_site_n5
     ed_get_gimp_site_n5.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-        ),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
         c_int,  # axis
         c_int,  # typ
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dz
         c_int,  # zflag
     ]
@@ -814,15 +778,11 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     if self.has_ineq:
         ed_get_gimp_lattice_n3 = self.library.get_gimp_lattice_n3
         ed_get_gimp_lattice_n3.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -830,15 +790,11 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
         ed_get_gimp_lattice_n4 = self.library.get_gimp_lattice_n4
         ed_get_gimp_lattice_n4.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -846,15 +802,11 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
         ed_get_gimp_lattice_n6 = self.library.get_gimp_lattice_n6
         ed_get_gimp_lattice_n6.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-            ),  # self
+            np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
             c_int,  # nineq
             c_int,  # axis
             c_int,  # typ
-            np.ctypeslib.ndpointer(
-                dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-            ),  # zeta
+            np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
             c_int,  # dz
             c_int,  # zflag
         ]
@@ -1316,12 +1268,8 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     """
     ed_get_spinchi = self.library.ed_get_spinchi
     ed_get_spinchi.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-        ),  # self
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dim_zeta
         c_int,  # zetaflag
         c_int,  # axis
@@ -1332,12 +1280,8 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
 
     ed_get_denschi = self.library.ed_get_denschi
     ed_get_denschi.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-        ),  # self
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dim_zeta
         c_int,  # zetaflag
         c_int,  # axis
@@ -1348,12 +1292,8 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
 
     ed_get_pairchi = self.library.ed_get_pairchi
     ed_get_pairchi.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=4, flags="F_CONTIGUOUS"
-        ),  # self
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dim_zeta
         c_int,  # zetaflag
         c_int,  # axis
@@ -1364,12 +1304,8 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
 
     ed_get_exctchi = self.library.ed_get_exctchi
     ed_get_exctchi.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-        ),  # self
-        np.ctypeslib.ndpointer(
-            dtype=complex, ndim=1, flags="F_CONTIGUOUS"
-        ),  # zeta
+        np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
         c_int,  # dim_zeta
         c_int,  # zetaflag
         c_int,  # axis
@@ -1398,8 +1334,7 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
 
     if edmode != 1:
         raise ValueError(
-            "Susceptibility calculation not supported for ed_mode "
-            "not = normal"
+            "Susceptibility calculation not supported for ed_mode " "not = normal"
         )
 
     zetaflag = 1
@@ -1437,33 +1372,17 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     zeta = np.asfortranarray(zeta)
 
     if chan.lower() == "spin" or chan.lower() == "s":
-        chi = np.zeros(
-            [Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F"
-        )
-        ed_get_spinchi(
-            chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag
-        )
+        chi = np.zeros([Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F")
+        ed_get_spinchi(chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag)
     if chan.lower() == "dens" or chan.lower() == "d":
-        chi = np.zeros(
-            [Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F"
-        )
-        ed_get_denschi(
-            chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag
-        )
+        chi = np.zeros([Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F")
+        ed_get_denschi(chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag)
     if chan.lower() == "pair" or chan.lower() == "p":
-        chi = np.zeros(
-            [Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F"
-        )
-        ed_get_pairchi(
-            chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag
-        )
+        chi = np.zeros([Nsites, aux_norb, aux_norb, nfreq], dtype=complex, order="F")
+        ed_get_pairchi(chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag)
     if chan.lower() == "exct" or chan.lower() == "e":
-        chi = np.zeros(
-            [Nsites, 3, aux_norb, aux_norb, nfreq], dtype=complex, order="F"
-        )
-        ed_get_exctchi(
-            chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag
-        )
+        chi = np.zeros([Nsites, 3, aux_norb, aux_norb, nfreq], dtype=complex, order="F")
+        ed_get_exctchi(chi, zeta, nfreq, zetaflag, axisflag, Nsites, latticeflag)
 
     chi = np.ascontiguousarray(chi)
 

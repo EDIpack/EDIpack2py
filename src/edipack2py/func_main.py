@@ -92,9 +92,7 @@ def init_solver(self, bath=None, Nb=None, Nlat=None):
         init_solver_ineq = self.library.init_solver_ineq
         init_solver_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
-            np.ctypeslib.ndpointer(
-                dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
         ]
         init_solver_ineq.restype = None
 
@@ -151,9 +149,7 @@ def solve(self, bath=None, flag_gf=True, flag_mpi=True, mpi_lanc=False):
     """
     solve_site = self.library.solve_site
     solve_site.argtypes = [
-        np.ctypeslib.ndpointer(
-            dtype=float, ndim=1, flags="F_CONTIGUOUS"
-        ),  # bath
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),  # bath
         np.ctypeslib.ndpointer(
             dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
         ),  # dim_bath
@@ -165,9 +161,7 @@ def solve(self, bath=None, flag_gf=True, flag_mpi=True, mpi_lanc=False):
         # Define the function signature for the Fortran function `solve_ineq`.
         solve_ineq = self.library.solve_ineq
         solve_ineq.argtypes = [
-            np.ctypeslib.ndpointer(
-                dtype=float, ndim=2, flags="F_CONTIGUOUS"
-            ),  # bath
+            np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),  # bath
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),  # dim_bath

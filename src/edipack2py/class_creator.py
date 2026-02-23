@@ -4,6 +4,7 @@ import os, sys
 from pathlib import Path
 import types
 import pkgconfig
+import warnings
 
 #################################
 # AUXILIARY FUNCTIONS
@@ -37,83 +38,51 @@ class Link:
 
 # function that will add a variable to the dummy class, will be called
 # in variable definition
-def add_global_variable(obj, dynamic_name, target_object, target_attribute):
-    @property
-    def getter(self):
-        try:
-            attrib = getattr(target_object, target_attribute)
-            try:  # this is for strings
-                attrib = attrib.decode()
-            except Exception:
-                pass
-        except Exception:  # this is for arrays
-            if len(target_object) > 1:
-                return [target_object[x] for x in range(len(target_object))]
-        return attrib
+def add_global_variable(
+    dynamic_name, dynamic_type, obj, dynamic_library, target_attribute="value"
+):
+    try:
+        dynamic_type.in_dll(dynamic_library, dynamic_name)
+    except:
+        warnings.warn(
+            f"Symbol '{dynamic_name}' not found in the DLL. Check library version."
+        )
+        return
 
-    @getter.setter
+    def getter(self):
+        target_object = dynamic_type.in_dll(dynamic_library, dynamic_name)
+        # If target_object has the attribute
+        if hasattr(target_object, target_attribute):
+            attrib = getattr(target_object, target_attribute)
+            if isinstance(attrib, bytes):
+                return attrib.decode()
+            return attrib
+        # If target_object is list-like or array-like
+        if hasattr(target_object, "__len__") and not isinstance(target_object, str):
+            return list(target_object)
+
     def setter(self, new_value):
-        try:  # this is for arrays
-            if len(target_object) > 1:
-                if np.isscalar(new_value):
-                    new_value = [new_value]
-                minlength = min(len(target_object), len(new_value))
-                target_object[0:minlength] = new_value[0:minlength]
-        except Exception:
-            try:
+        target_object = dynamic_type.in_dll(dynamic_library, dynamic_name)
+        # If target_object is array-like
+        if hasattr(target_object, "__len__") and not isinstance(target_object, str):
+            if np.isscalar(new_value):
+                new_value = [new_value]
+            minlength = min(len(target_object), len(new_value))
+            target_object[:minlength] = new_value[:minlength]
+            return
+
+        # If target_object has the attribute
+        elif hasattr(target_object, target_attribute):
+            if isinstance(new_value, str):
                 new_value = new_value.encode()
-            except Exception:
-                pass
             setattr(target_object, target_attribute, new_value)
+            return
+
+        else:
+            print("Could not set variable")
 
     # Dynamically add the property to the class
-    setattr(obj.__class__, dynamic_name, getter)
-    setattr(obj.__class__, dynamic_name, setter)
-
-
-# get bath type
-def get_bath_type(self):
-    """
-
-     This function returns an integer number related to the value of \
-     :f:var:`bath_type` in the input file
-
-      - :code:`1` for **normal** bath
-      - :code:`2` for **hybrid** bath
-      - :code:`3` for **replica** bath
-      - :code:`4` for **general** bath
-
-    :return: the integer index
-    :rtype: int
-
-    """
-
-    get_bath_type_wrap = self.library.get_bath_type
-    get_bath_type_wrap.argtypes = None
-    get_bath_type_wrap.restype = c_int
-    return get_bath_type_wrap()
-
-
-# get ed mode
-def get_ed_mode(self):
-    """
-
-    This function returns an integer number related to the value of \
-    :f:var:`ed_mode` in the input file
-
-     - :code:`1` for **normal** mode
-     - :code:`2` for **superc** mode
-     - :code:`3` for **nonsu2** mode
-
-    :return: the integer index
-    :rtype: int
-
-    """
-
-    get_ed_mode_wrap = self.library.get_ed_mode
-    get_ed_mode_wrap.argtypes = None
-    get_ed_mode_wrap.restype = c_int
-    return get_ed_mode_wrap()
+    setattr(obj.__class__, dynamic_name, property(getter, setter))
 
 
 ######################################
@@ -144,9 +113,7 @@ else:
             Path.home(), default_pc_dir
         )
     except Exception:
-        os.environ["PKG_CONFIG_PATH"] = os.path.join(
-            Path.home(), default_pc_dir
-        )
+        os.environ["PKG_CONFIG_PATH"] = os.path.join(Path.home(), default_pc_dir)
     if pkgconfig.exists("edipack"):
         pathlist += [pkgconfig.variables(libname)["libdir"]]
 
@@ -161,13 +128,13 @@ except Exception:
     pass
 
 # try loading the library
-dynamic_library = None
+edipack_library = None
 error_message = []
 
 for ipath in pathlist:
     try:
         libfile = os.path.join(ipath, "lib" + libname + libext)
-        dynamic_library = CDLL(libfile)
+        edipack_library = CDLL(libfile)
         break
     except Exception as e:
         error_message.append(str(e))
@@ -180,173 +147,59 @@ else:
 # Create the global_env class (this is what the python module sees)
 ####################################################################
 
-global_env = Link(dynamic_library)
+global_env = Link(edipack_library)
 
 ######################################
 # GLOBAL VARIABLES
 ######################################
 
-try:
-    add_global_variable(
-        global_env, "Nbath", c_int.in_dll(dynamic_library, "Nbath"), "value"
-    )
-    add_global_variable(
-        global_env, "Norb", c_int.in_dll(dynamic_library, "Norb"), "value"
-    )
-    add_global_variable(
-        global_env, "Nspin", c_int.in_dll(dynamic_library, "Nspin"), "value"
-    )
-    add_global_variable(
-        global_env, "Nloop", c_int.in_dll(dynamic_library, "Nloop"), "value"
-    )
-    add_global_variable(
-        global_env, "Nph", c_int.in_dll(dynamic_library, "Nph"), "value"
-    )
-    add_global_variable(
-        global_env,
-        "Nsuccess",
-        c_int.in_dll(dynamic_library, "Nsuccess"),
-        "value",
-    )
-    add_global_variable(
-        global_env, "Lmats", c_int.in_dll(dynamic_library, "Lmats"), "value"
-    )
-    add_global_variable(
-        global_env, "Lreal", c_int.in_dll(dynamic_library, "Lreal"), "value"
-    )
-    add_global_variable(
-        global_env, "Ltau", c_int.in_dll(dynamic_library, "Ltau"), "value"
-    )
-    add_global_variable(
-        global_env, "Lfit", c_int.in_dll(dynamic_library, "Lfit"), "value"
-    )
-    add_global_variable(
-        global_env, "Lpos", c_int.in_dll(dynamic_library, "Lpos"), "value"
-    )
-    add_global_variable(
-        global_env,
-        "LOGfile",
-        c_int.in_dll(dynamic_library, "LOGfile"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "Uloc",
-        ARRAY(c_double, 5).in_dll(dynamic_library, "Uloc"),
-        "value",
-    )
-    add_global_variable(
-        global_env, "Ust", c_double.in_dll(dynamic_library, "Ust"), "value"
-    )
-    add_global_variable(
-        global_env, "Jh", c_double.in_dll(dynamic_library, "Jh"), "value"
-    )
-    add_global_variable(
-        global_env, "Jx", c_double.in_dll(dynamic_library, "Jx"), "value"
-    )
-    add_global_variable(
-        global_env, "Jp", c_double.in_dll(dynamic_library, "Jp"), "value"
-    )
-    add_global_variable(
-        global_env, "xmu", c_double.in_dll(dynamic_library, "xmu"), "value"
-    )
-    add_global_variable(
-        global_env, "beta", c_double.in_dll(dynamic_library, "beta"), "value"
-    )
-    add_global_variable(
-        global_env,
-        "dmft_error",
-        c_double.in_dll(dynamic_library, "dmft_error"),
-        "value",
-    )
-    add_global_variable(
-        global_env, "eps", c_double.in_dll(dynamic_library, "eps"), "value"
-    )
-    add_global_variable(
-        global_env, "wini", c_double.in_dll(dynamic_library, "wini"), "value"
-    )
-    add_global_variable(
-        global_env, "wfin", c_double.in_dll(dynamic_library, "wfin"), "value"
-    )
-    add_global_variable(
-        global_env, "xmin", c_double.in_dll(dynamic_library, "xmin"), "value"
-    )
-    add_global_variable(
-        global_env, "xmax", c_double.in_dll(dynamic_library, "xmax"), "value"
-    )
-    add_global_variable(
-        global_env,
-        "sb_field",
-        c_double.in_dll(dynamic_library, "sb_field"),
-        "value",
-    )
-    add_global_variable(
-        global_env, "nread", c_double.in_dll(dynamic_library, "nread"), "value"
-    )
+global_vars_dict = {
+    "Nbath": c_int,
+    "Norb": c_int,
+    "Nspin": c_int,
+    "Nloop": c_int,
+    "Nph": c_int,
+    "Nsuccess": c_int,
+    "Lmats": c_int,
+    "Lreal": c_int,
+    "Ltau": c_int,
+    "Lfit": c_int,
+    "Lpos": c_int,
+    "Uloc": ARRAY(c_double, 5),
+    "pair_field": ARRAY(c_double, 15),
+    "Ust": c_double,
+    "Jh": c_double,
+    "Jx": c_double,
+    "Jp": c_double,
+    "xmu": c_double,
+    "beta": c_double,
+    "dmft_error": c_double,
+    "eps": c_double,
+    "wini": c_double,
+    "wfin": c_double,
+    "xmin": c_double,
+    "xmax": c_double,
+    "sb_field": c_double,
+    "nread": c_double,
+    "ed_total_ud": c_bool,
+    "ed_twin": c_bool,
+    "chispin_flag": c_bool,
+    "chidens_flag": c_bool,
+    "chipair_flag": c_bool,
+    "chiexct_flag": c_bool,
+    "rdm_flag": c_bool,
+}
 
-    add_global_variable(
-        global_env,
-        "ed_total_ud",
-        c_bool.in_dll(dynamic_library, "ed_total_ud"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "ed_twin",
-        c_bool.in_dll(dynamic_library, "ed_twin"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "chispin_flag",
-        c_bool.in_dll(dynamic_library, "chispin_flag"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "chidens_flag",
-        c_bool.in_dll(dynamic_library, "chidens_flag"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "chipair_flag",
-        c_bool.in_dll(dynamic_library, "chipair_flag"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "chiexct_flag",
-        c_bool.in_dll(dynamic_library, "chiexct_flag"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "rdm_flag",
-        c_bool.in_dll(dynamic_library, "rdm_flag"),
-        "value",
-    )
-    add_global_variable(
-        global_env,
-        "pair_field",
-        ARRAY(c_double, 15).in_dll(dynamic_library, "pair_field"),
-        "value",
-    )
-except Exception:
-    print(
-        "Could not setup global vars. Is EDIpack (or EDIpack2ineq) installed?"
-    )
+
+for varname, vartype in global_vars_dict.items():
+    add_global_variable(varname, vartype, global_env, edipack_library)
 
 
 ######################################
 # GLOBAL FUNCTIONS
 ######################################
 
-# from here
-global_env.get_bath_type = types.MethodType(get_bath_type, global_env)
-global_env.get_ed_mode = types.MethodType(get_ed_mode, global_env)
-
-# parse umatrix (newer EDIpack)
+# parse umatrix
 try:
     from . import func_parse_umatrix
 
@@ -367,10 +220,11 @@ global_env.read_input = types.MethodType(func_read_input.read_input, global_env)
 # aux_funx
 from . import func_aux_funx
 
+global_env.get_bath_type = types.MethodType(func_aux_funx.get_bath_type, global_env)
+global_env.get_ed_mode = types.MethodType(func_aux_funx.get_ed_mode, global_env)
+
 global_env.set_hloc = types.MethodType(func_aux_funx.set_hloc, global_env)
-global_env.search_variable = types.MethodType(
-    func_aux_funx.search_variable, global_env
-)
+global_env.search_variable = types.MethodType(func_aux_funx.search_variable, global_env)
 global_env.check_convergence = types.MethodType(
     func_aux_funx.check_convergence, global_env
 )
@@ -392,9 +246,7 @@ global_env.spin_symmetrize_bath = types.MethodType(
 global_env.orb_symmetrize_bath = types.MethodType(
     func_bath.orb_symmetrize_bath, global_env
 )
-global_env.orb_equality_bath = types.MethodType(
-    func_bath.orb_equality_bath, global_env
-)
+global_env.orb_equality_bath = types.MethodType(func_bath.orb_equality_bath, global_env)
 global_env.ph_symmetrize_bath = types.MethodType(
     func_bath.ph_symmetrize_bath, global_env
 )
@@ -410,9 +262,7 @@ from . import func_main
 
 global_env.init_solver = types.MethodType(func_main.init_solver, global_env)
 global_env.solve = types.MethodType(func_main.solve, global_env)
-global_env.finalize_solver = types.MethodType(
-    func_main.finalize_solver, global_env
-)
+global_env.finalize_solver = types.MethodType(func_main.finalize_solver, global_env)
 
 # io
 from . import func_io
@@ -429,9 +279,7 @@ global_env.get_docc = types.MethodType(func_io.get_docc, global_env)
 global_env.get_phi = types.MethodType(func_io.get_phi, global_env)
 global_env.get_eimp = types.MethodType(func_io.get_eimp, global_env)
 global_env.get_chi = types.MethodType(func_io.get_chi, global_env)
-global_env.get_impurity_rdm = types.MethodType(
-    func_io.get_impurity_rdm, global_env
-)
+global_env.get_impurity_rdm = types.MethodType(func_io.get_impurity_rdm, global_env)
 
 # bath_fit
 from . import func_bath_fit

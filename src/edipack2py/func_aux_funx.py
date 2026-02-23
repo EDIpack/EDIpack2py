@@ -64,39 +64,25 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
         ed_set_Hloc_lattice_N2.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
-            np.ctypeslib.ndpointer(
-                dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
-            ),
+            np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             c_int,
         ]
         ed_set_Hloc_lattice_N2.restype = None
         if self.has_ineq:
             ed_set_Hloc_lattice_N3 = self.library.ed_set_Hloc_lattice_N3
             ed_set_Hloc_lattice_N3.argtypes = [
-                np.ctypeslib.ndpointer(
-                    dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-                ),
-                np.ctypeslib.ndpointer(
-                    dtype=complex, ndim=3, flags="F_CONTIGUOUS"
-                ),
-                np.ctypeslib.ndpointer(
-                    dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
-                ),
+                np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
+                np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
+                np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
                 c_int,
             ]
             ed_set_Hloc_lattice_N3.restype = None
 
             ed_set_Hloc_lattice_N5 = self.library.ed_set_Hloc_lattice_N5
             ed_set_Hloc_lattice_N5.argtypes = [
-                np.ctypeslib.ndpointer(
-                    dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-                ),
-                np.ctypeslib.ndpointer(
-                    dtype=complex, ndim=5, flags="F_CONTIGUOUS"
-                ),
-                np.ctypeslib.ndpointer(
-                    dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
-                ),
+                np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
+                np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
+                np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
                 c_int,
             ]
             ed_set_Hloc_lattice_N5.restype = None
@@ -106,16 +92,12 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
         dim_hloc = np.asarray(np.shape(hloc), dtype=np.int64, order="F")
         self.dim_hloc = len(dim_hloc)
         if hloc_anomalous is not None:
-            hloc_anomalous = np.asarray(
-                hloc_anomalous, dtype=complex, order="F"
-            )
+            hloc_anomalous = np.asarray(hloc_anomalous, dtype=complex, order="F")
             dim_hloc_anomalous = np.asarray(
                 np.shape(hloc_anomalous), dtype=np.int64, order="F"
             )
             if not np.array_equal(dim_hloc, dim_hloc_anomalous):
-                raise ValueError(
-                    "Hloc and Hloc_anomalous must have the same shape"
-                )
+                raise ValueError("Hloc and Hloc_anomalous must have the same shape")
         else:
             hloc_anomalous = np.zeros_like(hloc)
     except Exception:
@@ -130,9 +112,7 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
             elif len(dim_hloc) == 5:
                 ed_set_Hloc_lattice_N5(hloc, hloc_anomalous, dim_hloc, Nlat)
             else:
-                raise ValueError(
-                    "ed_set_Hloc_lattice: dimension must be 2,3 or 5"
-                )
+                raise ValueError("ed_set_Hloc_lattice: dimension must be 2,3 or 5")
         else:
             raise RuntimeError(
                 "Can't use r-DMFT routines without installing EDIpack2ineq"
@@ -304,9 +284,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
 
         if self.whichiter < N2:
             if np.prod(np.shape(errvec)) > 1:
-                print(
-                    colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}"
-                )
+                print(colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}")
             print(
                 colorprefix
                 + "    " * int(np.prod(np.shape(errvec)) > 1)
@@ -315,14 +293,10 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
                 + f"{err:.6e}"
             )
             if np.prod(np.shape(errvec)) > 1:
-                print(
-                    colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}"
-                )
+                print(colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}")
         else:
             if np.prod(np.shape(errvec)) > 1:
-                print(
-                    colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}"
-                )
+                print(colorprefix + "max error=" + self.COLOREND + f"{errmax:.6e}")
             print(
                 colorprefix
                 + "    " * int(np.prod(np.shape(errvec)) > 1)
@@ -331,9 +305,7 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
                 + f"{err:.6e}"
             )
             if np.prod(np.shape(errvec)) > 1:
-                print(
-                    colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}"
-                )
+                print(colorprefix + "min error=" + self.COLOREND + f"{errmin:.6e}")
             print("Not converged after " + str(N2) + " iterations.")
             with open("ERROR.README", "a") as file:
                 file.write("Not converged after " + str(N2) + " iterations.")
@@ -347,3 +319,48 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
     except Exception:
         pass
     return err, conv_bool
+
+
+# get bath type
+def get_bath_type(self):
+    """
+
+     This function returns an integer number related to the value of \
+     :f:var:`bath_type` in the input file
+
+      - :code:`1` for **normal** bath
+      - :code:`2` for **hybrid** bath
+      - :code:`3` for **replica** bath
+      - :code:`4` for **general** bath
+
+    :return: the integer index
+    :rtype: int
+
+    """
+
+    get_bath_type_wrap = self.library.get_bath_type
+    get_bath_type_wrap.argtypes = None
+    get_bath_type_wrap.restype = c_int
+    return get_bath_type_wrap()
+
+
+# get ed mode
+def get_ed_mode(self):
+    """
+
+    This function returns an integer number related to the value of \
+    :f:var:`ed_mode` in the input file
+
+     - :code:`1` for **normal** mode
+     - :code:`2` for **superc** mode
+     - :code:`3` for **nonsu2** mode
+
+    :return: the integer index
+    :rtype: int
+
+    """
+
+    get_ed_mode_wrap = self.library.get_ed_mode
+    get_ed_mode_wrap.argtypes = None
+    get_ed_mode_wrap.restype = c_int
+    return get_ed_mode_wrap()
