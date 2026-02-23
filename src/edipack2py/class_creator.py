@@ -322,6 +322,12 @@ try:
     )
     add_global_variable(
         global_env,
+        "rdm_flag",
+        c_bool.in_dll(dynamic_library, "rdm_flag"),
+        "value",
+    )
+    add_global_variable(
+        global_env,
         "pair_field",
         ARRAY(c_double, 15).in_dll(dynamic_library, "pair_field"),
         "value",
