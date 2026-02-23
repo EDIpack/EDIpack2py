@@ -30,7 +30,7 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
     
     :type hloc_anomalous: np.array(dtype=complex)
     :param hloc_anomalous: Local Hamiltonian matrix. Anomalous terms for SC.
-     Must have the same shape as :var:`hloc`.
+     Must have the same shape as :data:`hloc`.
 
     :type Nlat: int
     :param Nlat: Number of inequivalent sites for real-space DMFT. The function \
