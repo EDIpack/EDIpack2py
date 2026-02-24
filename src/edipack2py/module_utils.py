@@ -62,7 +62,7 @@ def load_edipack_library(libname="edipack_cbindings"):
         except Exception as e:
             error_message.append(str(e))
     else:
-        raise RuntimeError("Library loading failed.\n" + "\n".join(error_message))
+        warnings.warn("Library loading failed.\n" + "\n".join(error_message))
 
     return edipack_library
 
@@ -97,6 +97,9 @@ class dynamic_library_interface:
     # Add global variable to interface class
     def add_global_variable(self, dynamic_name, dynamic_type, target_attribute="value"):
         # Fail early if symbol missing
+        if self.library is None:
+            warnings.warn("EDIpack library is not present.")
+            return
         try:
             dynamic_type.in_dll(self.library, dynamic_name)
         except ValueError:
