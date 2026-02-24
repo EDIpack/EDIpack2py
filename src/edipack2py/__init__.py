@@ -1,10 +1,5 @@
 from ctypes import *
-import numpy as np
-import os, sys
-from pathlib import Path
-import types
-import pkgconfig
-import warnings
+import importlib
 
 
 try:
@@ -118,7 +113,7 @@ global_funcs_dict = {
     "func_bath_fit": ["chi2_fitgf"],
 }
 
-for modname, funcname in global_funcs_dict.items():
-    mod = __import__(f"edipack2py.{modname}", fromlist=funcname)
-    for f in funcname:
-        global_env.add_method(getattr(mod, f))
+for modname, funcnames in global_funcs_dict.items():
+    mod = importlib.import_module(f"edipack2py.{modname}")
+    for fname in funcnames:
+        global_env.add_method(getattr(mod, fname))
