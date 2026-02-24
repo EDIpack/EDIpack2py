@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -27,7 +27,7 @@ def get_dens(self, ilat=None, iorb=None):
     
     """
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
     ed_get_dens_n1_wrap = self.library.ed_get_dens_n1
     ed_get_dens_n1_wrap.argtypes = [
@@ -38,7 +38,7 @@ def get_dens(self, ilat=None, iorb=None):
         ed_get_dens_n2_wrap = self.library.ed_get_dens_n2
         ed_get_dens_n2_wrap.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         ed_get_dens_n2_wrap.restype = None
 
@@ -106,7 +106,7 @@ def get_mag(self, icomp=None, ilat=None, iorb=None):
     elif icomp == "z" or icomp == "Z":
         icomp = 2
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
     ed_get_mag_n2_wrap = self.library.ed_get_mag_n2
     ed_get_mag_n2_wrap.argtypes = [
@@ -117,7 +117,7 @@ def get_mag(self, icomp=None, ilat=None, iorb=None):
         ed_get_mag_n3_wrap = self.library.ed_get_mag_n3
         ed_get_mag_n3_wrap.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=3, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         ed_get_mag_n3_wrap.restype = None
 
@@ -186,7 +186,7 @@ def get_docc(self, ilat=None, iorb=None):
    
    """
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
     ed_get_docc_n1_wrap = self.library.ed_get_docc_n1
     ed_get_docc_n1_wrap.argtypes = [
@@ -197,7 +197,7 @@ def get_docc(self, ilat=None, iorb=None):
         ed_get_docc_n2_wrap = self.library.ed_get_docc_n2
         ed_get_docc_n2_wrap.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         ed_get_docc_n2_wrap.restype = None
 
@@ -260,7 +260,7 @@ def get_phi(self, ilat=None, iorb=None, jorb=None, component=None):
    
    """
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
     ed_get_phisc_n2_wrap = self.library.ed_get_phisc_n2
     ed_get_phisc_n2_wrap.argtypes = [
@@ -278,7 +278,7 @@ def get_phi(self, ilat=None, iorb=None, jorb=None, component=None):
         ed_get_phisc_n3_wrap = self.library.ed_get_phisc_n3
         ed_get_phisc_n3_wrap.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=3, flags="F_CONTIGUOUS"),  # self
-            c_int,  # Nlat
+            ct.c_int,  # Nlat
         ]
         ed_get_phisc_n3_wrap.restype = None
 
@@ -395,7 +395,7 @@ def get_eimp(self, ilat=None, ikind=None):
         ed_get_eimp_n2_wrap = self.library.ed_get_eimp_n2
         ed_get_eimp_n2_wrap.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         ed_get_eimp_n2_wrap.restype = None
 
@@ -505,22 +505,22 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     ed_get_sigma_site_n3 = self.library.get_sigma_site_n3
     ed_get_sigma_site_n3.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
-        c_int,  # axis
-        c_int,  # typ
+        ct.c_int,  # axis
+        ct.c_int,  # typ
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dz
-        c_int,  # zflag
+        ct.c_int,  # dz
+        ct.c_int,  # zflag
     ]
     ed_get_sigma_site_n3.restype = None
 
     ed_get_sigma_site_n5 = self.library.get_sigma_site_n5
     ed_get_sigma_site_n5.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
-        c_int,  # axis
-        c_int,  # typ
+        ct.c_int,  # axis
+        ct.c_int,  # typ
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dz
-        c_int,  # zflag
+        ct.c_int,  # dz
+        ct.c_int,  # zflag
     ]
     ed_get_sigma_site_n5.restype = None
 
@@ -528,42 +528,42 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
         ed_get_sigma_lattice_n3 = self.library.get_sigma_lattice_n3
         ed_get_sigma_lattice_n3.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_sigma_lattice_n3.restype = None
 
         ed_get_sigma_lattice_n4 = self.library.get_sigma_lattice_n4
         ed_get_sigma_lattice_n4.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_sigma_lattice_n4.restype = None
 
         ed_get_sigma_lattice_n6 = self.library.get_sigma_lattice_n6
         ed_get_sigma_lattice_n6.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_sigma_lattice_n6.restype = None
 
     # Global vars
-    norb_aux = c_int.in_dll(self.library, "Norb").value
-    nspin_aux = c_int.in_dll(self.library, "Nspin").value
+    norb_aux = ct.c_int.in_dll(self.library, "Norb").value
+    nspin_aux = ct.c_int.in_dll(self.library, "Nspin").value
 
     # zeta
     if zeta is not None:
@@ -577,9 +577,9 @@ def get_sigma(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     else:
         zeta = np.asarray([0.0], dtype=complex, order="F")
         if axis == "m":
-            nfreq = c_int.in_dll(self.library, "Lmats").value
+            nfreq = ct.c_int.in_dll(self.library, "Lmats").value
         else:
-            nfreq = c_int.in_dll(self.library, "Lreal").value
+            nfreq = ct.c_int.in_dll(self.library, "Lreal").value
         zflag = 0
 
     # ishape
@@ -756,22 +756,22 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     ed_get_gimp_site_n3 = self.library.get_gimp_site_n3
     ed_get_gimp_site_n3.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
-        c_int,  # axis
-        c_int,  # typ
+        ct.c_int,  # axis
+        ct.c_int,  # typ
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dz
-        c_int,  # zflag
+        ct.c_int,  # dz
+        ct.c_int,  # zflag
     ]
     ed_get_gimp_site_n3.restype = None
 
     ed_get_gimp_site_n5 = self.library.get_gimp_site_n5
     ed_get_gimp_site_n5.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
-        c_int,  # axis
-        c_int,  # typ
+        ct.c_int,  # axis
+        ct.c_int,  # typ
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dz
-        c_int,  # zflag
+        ct.c_int,  # dz
+        ct.c_int,  # zflag
     ]
     ed_get_gimp_site_n5.restype = None
 
@@ -779,42 +779,42 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
         ed_get_gimp_lattice_n3 = self.library.get_gimp_lattice_n3
         ed_get_gimp_lattice_n3.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_gimp_lattice_n3.restype = None
 
         ed_get_gimp_lattice_n4 = self.library.get_gimp_lattice_n4
         ed_get_gimp_lattice_n4.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_gimp_lattice_n4.restype = None
 
         ed_get_gimp_lattice_n6 = self.library.get_gimp_lattice_n6
         ed_get_gimp_lattice_n6.argtypes = [
             np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
-            c_int,  # nineq
-            c_int,  # axis
-            c_int,  # typ
+            ct.c_int,  # nineq
+            ct.c_int,  # axis
+            ct.c_int,  # typ
             np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-            c_int,  # dz
-            c_int,  # zflag
+            ct.c_int,  # dz
+            ct.c_int,  # zflag
         ]
         ed_get_gimp_lattice_n6.restype = None
 
     # Global vars
-    norb_aux = c_int.in_dll(self.library, "Norb").value
-    nspin_aux = c_int.in_dll(self.library, "Nspin").value
+    norb_aux = ct.c_int.in_dll(self.library, "Norb").value
+    nspin_aux = ct.c_int.in_dll(self.library, "Nspin").value
 
     # zeta
     if zeta is not None:
@@ -830,9 +830,9 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
     else:
         zeta = np.asarray([0.0], dtype=complex, order="F")
         if axis == "m":
-            nfreq = c_int.in_dll(self.library, "Lmats").value
+            nfreq = ct.c_int.in_dll(self.library, "Lmats").value
         else:
-            nfreq = c_int.in_dll(self.library, "Lreal").value
+            nfreq = ct.c_int.in_dll(self.library, "Lreal").value
         zflag = 0
 
     # ishape
@@ -981,31 +981,31 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
     ed_get_g0and_n3 = self.library.get_g0and_n3
     ed_get_g0and_n3.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_char_p,
-        c_char_p,
+        ct.c_char_p,
+        ct.c_char_p,
     ]
     ed_get_g0and_n3.restype = None
 
     ed_get_g0and_n5 = self.library.get_g0and_n5
     ed_get_g0and_n5.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_char_p,
-        c_char_p,
+        ct.c_char_p,
+        ct.c_char_p,
     ]
     ed_get_g0and_n5.restype = None
 
-    norb_aux = c_int.in_dll(self.library, "Norb").value
-    nspin_aux = c_int.in_dll(self.library, "Nspin").value
+    norb_aux = ct.c_int.in_dll(self.library, "Norb").value
+    nspin_aux = ct.c_int.in_dll(self.library, "Nspin").value
 
     zeta = zeta.astype(complex)
 
@@ -1044,8 +1044,8 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
             dimbath,
             G0and,
             DimG0and,
-            c_char_p(axis.encode()),
-            c_char_p(typ.encode()),
+            ct.c_char_p(axis.encode()),
+            ct.c_char_p(typ.encode()),
         )
     elif ishape == 5:
         G0and = np.zeros(
@@ -1065,8 +1065,8 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
             dimbath,
             G0and,
             DimG0and,
-            c_char_p(axis.encode()),
-            c_char_p(typ.encode()),
+            ct.c_char_p(axis.encode()),
+            ct.c_char_p(typ.encode()),
         )
     else:
         raise ValueError("Shape(array) != 3,5 in get_g0and")
@@ -1118,31 +1118,31 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
     ed_get_delta_n3 = self.library.get_delta_n3
     ed_get_delta_n3.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_char_p,
-        c_char_p,
+        ct.c_char_p,
+        ct.c_char_p,
     ]
     ed_get_delta_n3.restype = None
 
     ed_get_delta_n5 = self.library.get_delta_n5
     ed_get_delta_n5.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
         np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_char_p,
-        c_char_p,
+        ct.c_char_p,
+        ct.c_char_p,
     ]
     ed_get_delta_n5.restype = None
 
-    norb_aux = c_int.in_dll(self.library, "Norb").value
-    nspin_aux = c_int.in_dll(self.library, "Nspin").value
+    norb_aux = ct.c_int.in_dll(self.library, "Norb").value
+    nspin_aux = ct.c_int.in_dll(self.library, "Nspin").value
 
     zeta = zeta.astype(complex)
 
@@ -1181,8 +1181,8 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
             dimbath,
             Delta,
             DimDelta,
-            c_char_p(axis.encode()),
-            c_char_p(typ.encode()),
+            ct.c_char_p(axis.encode()),
+            ct.c_char_p(typ.encode()),
         )
     elif ishape == 5:
         Delta = np.zeros(
@@ -1202,8 +1202,8 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
             dimbath,
             Delta,
             DimDelta,
-            c_char_p(axis.encode()),
-            c_char_p(typ.encode()),
+            ct.c_char_p(axis.encode()),
+            ct.c_char_p(typ.encode()),
         )
     else:
         raise ValueError("Shape(array) != 3,5 in get_delta")
@@ -1270,11 +1270,11 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     ed_get_spinchi.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dim_zeta
-        c_int,  # zetaflag
-        c_int,  # axis
-        c_int,  # nsites
-        c_int,  # latticeflag
+        ct.c_int,  # dim_zeta
+        ct.c_int,  # zetaflag
+        ct.c_int,  # axis
+        ct.c_int,  # nsites
+        ct.c_int,  # latticeflag
     ]
     ed_get_spinchi.restype = None
 
@@ -1282,11 +1282,11 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     ed_get_denschi.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dim_zeta
-        c_int,  # zetaflag
-        c_int,  # axis
-        c_int,  # nsites
-        c_int,  # latticeflag
+        ct.c_int,  # dim_zeta
+        ct.c_int,  # zetaflag
+        ct.c_int,  # axis
+        ct.c_int,  # nsites
+        ct.c_int,  # latticeflag
     ]
     ed_get_denschi.restype = None
 
@@ -1294,11 +1294,11 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     ed_get_pairchi.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # self
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dim_zeta
-        c_int,  # zetaflag
-        c_int,  # axis
-        c_int,  # nsites
-        c_int,  # latticeflag
+        ct.c_int,  # dim_zeta
+        ct.c_int,  # zetaflag
+        ct.c_int,  # axis
+        ct.c_int,  # nsites
+        ct.c_int,  # latticeflag
     ]
     ed_get_pairchi.restype = None
 
@@ -1306,11 +1306,11 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
     ed_get_exctchi.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),  # self
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
-        c_int,  # dim_zeta
-        c_int,  # zetaflag
-        c_int,  # axis
-        c_int,  # nsites
-        c_int,  # latticeflag
+        ct.c_int,  # dim_zeta
+        ct.c_int,  # zetaflag
+        ct.c_int,  # axis
+        ct.c_int,  # nsites
+        ct.c_int,  # latticeflag
     ]
     ed_get_exctchi.restype = None
 
@@ -1326,10 +1326,10 @@ def get_chi(self, chan="spin", zeta=None, axis=None, ilat=None):
                 "Can't use r-DMFT routines without installing EDIpack2ineq"
             )
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
-    aux_Lmats = c_int.in_dll(self.library, "Lmats").value
-    aux_Lreal = c_int.in_dll(self.library, "Lreal").value
-    aux_Ltau = c_int.in_dll(self.library, "Ltau").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
+    aux_Lmats = ct.c_int.in_dll(self.library, "Lmats").value
+    aux_Lreal = ct.c_int.in_dll(self.library, "Lreal").value
+    aux_Ltau = ct.c_int.in_dll(self.library, "Ltau").value
     edmode = self.get_ed_mode()
 
     if edmode != 1:
@@ -1414,7 +1414,7 @@ def get_impurity_rdm(self, doprint=False):
     :rtype: np.array(dtype=complex) 
     
     """
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
     ed_get_impurity_rdm_wrap = self.library.ed_get_impurity_rdm
     ed_get_impurity_rdm_wrap.argtypes = [

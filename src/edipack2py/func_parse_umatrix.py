@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -58,15 +58,15 @@ def add_twobody_operator(self, oi, si, oj, sj, ok, sk, ol, sl, Uijkl):
 
     add_twobody_operator_wrap = self.library.add_twobody_operator
     add_twobody_operator_wrap.argtypes = [
-        c_int,
-        c_int,
-        c_int,
-        c_int,
-        c_int,
-        c_int,
-        c_int,
-        c_int,
-        c_double,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_double,
     ]
     add_twobody_operator_wrap.restype = None
 

@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -52,7 +52,7 @@ def init_solver(self, bath=None, Nb=None, Nlat=None):
        :rtype: np.array(dtype=float) 
     """
 
-    nbath_aux = c_int.in_dll(self.library, "Nbath").value
+    nbath_aux = ct.c_int.in_dll(self.library, "Nbath").value
 
     if bath is None:
         if Nb is None and Nlat is None:
@@ -153,8 +153,8 @@ def solve(self, bath=None, flag_gf=True, flag_mpi=True, mpi_lanc=False):
         np.ctypeslib.ndpointer(
             dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
         ),  # dim_bath
-        c_int,  # flag_gf
-        c_int,
+        ct.c_int,  # flag_gf
+        ct.c_int,
     ]  # flag_mpi
     solve_site.restype = None
     if self.has_ineq:
@@ -165,12 +165,12 @@ def solve(self, bath=None, flag_gf=True, flag_mpi=True, mpi_lanc=False):
             np.ctypeslib.ndpointer(
                 dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
             ),  # dim_bath
-            c_int,  # flag_gf
-            c_int,
+            ct.c_int,  # flag_gf
+            ct.c_int,
         ]  # flag_mpi
         solve_ineq.restype = None
 
-    nbath_aux = c_int.in_dll(self.library, "Nbath").value
+    nbath_aux = ct.c_int.in_dll(self.library, "Nbath").value
 
     if bath is None:
         if nbath_aux != 0:
@@ -207,7 +207,7 @@ def finalize_solver(self):
     """
 
     finalize_solver_wrapper = self.library.finalize_solver
-    finalize_solver_wrapper.argtypes = [c_int]
+    finalize_solver_wrapper.argtypes = [ct.c_int]
     finalize_solver_wrapper.restype = None
     if self.Nineq is None:
         print("ED environment is not initialized yet")

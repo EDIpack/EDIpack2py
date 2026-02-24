@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -65,7 +65,7 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
             np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         ed_set_Hloc_lattice_N2.restype = None
         if self.has_ineq:
@@ -74,7 +74,7 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
                 np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
                 np.ctypeslib.ndpointer(dtype=complex, ndim=3, flags="F_CONTIGUOUS"),
                 np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-                c_int,
+                ct.c_int,
             ]
             ed_set_Hloc_lattice_N3.restype = None
 
@@ -83,7 +83,7 @@ def set_hloc(self, hloc, hloc_anomalous=None, Nlat=None):
                 np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
                 np.ctypeslib.ndpointer(dtype=complex, ndim=5, flags="F_CONTIGUOUS"),
                 np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-                c_int,
+                ct.c_int,
             ]
             ed_set_Hloc_lattice_N5.restype = None
 
@@ -221,11 +221,11 @@ def check_convergence(self, func, threshold=None, N1=None, N2=None):
 
     # if threshold, N1 and/or N2 are None, set them to the input variables
     if threshold is None:
-        threshold = c_double.in_dll(self.library, "dmft_error").value
+        threshold = ct.c_double.in_dll(self.library, "dmft_error").value
     if N1 is None:
-        N1 = c_int.in_dll(self.library, "Nsuccess").value
+        N1 = ct.c_int.in_dll(self.library, "Nsuccess").value
     if N2 is None:
-        N2 = c_int.in_dll(self.library, "Nloop").value
+        N2 = ct.c_int.in_dll(self.library, "Nloop").value
 
     # if first loop, allocate old function as method
     if not hasattr(self, "oldfunc"):
@@ -340,7 +340,7 @@ def get_bath_type(self):
 
     get_bath_type_wrap = self.library.get_bath_type
     get_bath_type_wrap.argtypes = None
-    get_bath_type_wrap.restype = c_int
+    get_bath_type_wrap.restype = ct.c_int
     return get_bath_type_wrap()
 
 
@@ -362,5 +362,5 @@ def get_ed_mode(self):
 
     get_ed_mode_wrap = self.library.get_ed_mode
     get_ed_mode_wrap.argtypes = None
-    get_ed_mode_wrap.restype = c_int
+    get_ed_mode_wrap.restype = ct.c_int
     return get_ed_mode_wrap()

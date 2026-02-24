@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 from pathlib import Path
@@ -57,13 +57,12 @@ def load_edipack_library(libname="edipack_cbindings"):
     for ipath in pathlist:
         try:
             libfile = os.path.join(ipath, "lib" + libname + libext)
-            edipack_library = CDLL(libfile)
+            edipack_library = ct.CDLL(libfile)
             break
         except Exception as e:
             error_message.append(str(e))
     else:
-        print("Library loading failed. List of error messages:")
-        print(*error_message, sep="\n")
+        raise RuntimeError("Library loading failed.\n" + "\n".join(error_message))
 
     return edipack_library
 
@@ -76,7 +75,7 @@ class dynamic_library_interface:
     def __init__(self, library):
         self.library = library
         try:
-            self.has_ineq = bool(c_int.in_dll(self.library, "has_ineq").value)
+            self.has_ineq = bool(ct.c_int.in_dll(self.library, "has_ineq").value)
         except Exception:
             self.has_ineq = None
             print("Cannot init dynamic_library_interface class: invalid library")
@@ -101,8 +100,6 @@ class dynamic_library_interface:
         try:
             dynamic_type.in_dll(self.library, dynamic_name)
         except ValueError:
-            import warnings
-
             warnings.warn(f"Symbol '{dynamic_name}' not found in the DLL.")
             return
 

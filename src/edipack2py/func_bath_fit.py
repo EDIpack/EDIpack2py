@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -87,7 +87,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
       :rtype: np.array(dtype=float) 
     """
 
-    nbath_aux = c_int.in_dll(self.library, "Nbath").value
+    nbath_aux = ct.c_int.in_dll(self.library, "Nbath").value
 
     if nbath_aux == 0:
         print("Nbath=0. No bath to fit")
@@ -100,9 +100,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
-        c_int,
-        c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
     ]
     chi2_fitgf_single_normal_n3.restype = None
 
@@ -112,9 +112,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
-        c_int,
-        c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
     ]
     chi2_fitgf_single_normal_n5.restype = None
 
@@ -127,9 +127,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
-        c_int,
-        c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
     ]
     chi2_fitgf_single_superc_n3.restype = None
 
@@ -141,9 +141,9 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
-        c_int,
-        c_int,
+        ct.c_int,
+        ct.c_int,
+        ct.c_int,
     ]
     chi2_fitgf_single_superc_n5.restype = None
     if self.has_ineq:
@@ -154,7 +154,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_normal_n3.restype = None
 
@@ -164,7 +164,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_normal_n4.restype = None
 
@@ -174,7 +174,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_normal_n6.restype = None
 
@@ -187,7 +187,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_superc_n3.restype = None
 
@@ -199,7 +199,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_superc_n4.restype = None
 
@@ -211,7 +211,7 @@ def chi2_fitgf(self, *args, ispin=0, iorb=None, fmpi=True):
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         chi2_fitgf_lattice_superc_n6.restype = None
 

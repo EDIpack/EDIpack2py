@@ -1,4 +1,4 @@
-from ctypes import *
+import ctypes as ct
 import numpy as np
 import os, sys
 import types
@@ -15,11 +15,11 @@ def get_bath_dimension(self):
     """
     get_bath_dimension_direct_wrap = self.library.get_bath_dimension_direct
     get_bath_dimension_direct_wrap.argtypes = None
-    get_bath_dimension_direct_wrap.restype = c_int
+    get_bath_dimension_direct_wrap.restype = ct.c_int
 
     get_bath_dimension_symmetries_wrap = self.library.get_bath_dimension_symmetries
-    get_bath_dimension_symmetries_wrap.argtypes = [c_int]
-    get_bath_dimension_symmetries_wrap.restype = c_int
+    get_bath_dimension_symmetries_wrap.argtypes = [ct.c_int]
+    get_bath_dimension_symmetries_wrap.restype = ct.c_int
 
     if self.get_bath_type() > 2:  # replica/general
         if self.Nsym is None:
@@ -115,8 +115,8 @@ def set_hreplica(self, hvec, lambdavec):
         ]
         init_hreplica_symmetries_lattice_d3.restype = None
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
-    aux_nspin = c_int.in_dll(self.library, "Nspin").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
+    aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
     dim_hvec = np.asarray(np.shape(hvec), dtype=np.int64, order="F")
     dim_lambdavec = np.asarray(np.shape(lambdavec), dtype=np.int64, order="F")
 
@@ -245,8 +245,8 @@ def set_hgeneral(self, hvec, lambdavec):
     lambdavec = np.asfortranarray(lambdavec)
     hvec = np.asfortranarray(hvec)
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
-    aux_nspin = c_int.in_dll(self.library, "Nspin").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
+    aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
     dim_hvec = np.asarray(np.shape(hvec), dtype=np.int64, order="F")
     dim_lambdavec = np.asarray(np.shape(lambdavec), dtype=np.int64, order="F")
 
@@ -318,9 +318,9 @@ def break_symmetry_bath(self, bath, field, sign, save=True):
     break_symmetry_bath_site.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_double,
-        c_double,
-        c_int,
+        ct.c_double,
+        ct.c_double,
+        ct.c_int,
     ]
     break_symmetry_bath_site.restype = None
 
@@ -329,9 +329,9 @@ def break_symmetry_bath(self, bath, field, sign, save=True):
         break_symmetry_bath_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_double,
+            ct.c_double,
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         break_symmetry_bath_ineq.restype = None
 
@@ -379,7 +379,7 @@ def spin_symmetrize_bath(self, bath, save=True):
     spin_symmetrize_bath_site.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
     ]
     spin_symmetrize_bath_site.restypes = None
     if self.has_ineq:
@@ -387,7 +387,7 @@ def spin_symmetrize_bath(self, bath, save=True):
         spin_symmetrize_bath_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         spin_symmetrize_bath_ineq.restypes = None
     if save:
@@ -438,7 +438,7 @@ def orb_symmetrize_bath(self, bath, orb1, orb2, save=True):
     orb_symmetrize_bath_site.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
     ]
     orb_symmetrize_bath_site.restypes = None
     if self.has_ineq:
@@ -446,7 +446,7 @@ def orb_symmetrize_bath(self, bath, orb1, orb2, save=True):
         orb_symmetrize_bath_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
         orb_symmetrize_bath_ineq.restypes = None
 
@@ -497,8 +497,8 @@ def orb_equality_bath(self, bath, indx, save=True):
     orb_equality_bath_site.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
-        c_int,
+        ct.c_int,
+        ct.c_int,
     ]
     orb_equality_bath_site.restypes = None
     if self.has_ineq:
@@ -506,12 +506,12 @@ def orb_equality_bath(self, bath, indx, save=True):
         orb_equality_bath_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
-            c_int,
+            ct.c_int,
+            ct.c_int,
         ]
         orb_equality_bath_ineq.restypes = None
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
     if save:
         save_int = 1
     else:
@@ -556,7 +556,7 @@ def ph_symmetrize_bath(self, bath, save):
     ph_symmetrize_bath_site.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-        c_int,
+        ct.c_int,
     ]
     ph_symmetrize_bath_site.restypes = None
     if self.has_ineq:
@@ -564,7 +564,7 @@ def ph_symmetrize_bath(self, bath, save):
         ph_symmetrize_bath_ineq.argtypes = [
             np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS"),
             np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"),
-            c_int,
+            ct.c_int,
         ]
     ph_symmetrize_bath_ineq.restypes = None
     if save:
@@ -686,9 +686,9 @@ def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
        :rtype: np.array(dtype=float) 
     """
 
-    aux_norb = c_int.in_dll(self.library, "Norb").value
-    aux_nspin = c_int.in_dll(self.library, "Nspin").value
-    aux_nbath = c_int.in_dll(self.library, "Nbath").value
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
+    aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
+    aux_nbath = ct.c_int.in_dll(self.library, "Nbath").value
 
     settings = (self.get_ed_mode(), self.get_bath_type())
     if settings == (1, 1):  # normal ed mode, normal bath
