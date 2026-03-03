@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>edipack2py.func_bath_fit &mdash; EDIpack2py 5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=aface3f9" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ce74c6a2"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EDIpack2py
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pyinstallation.html">EDIpack2py Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pyinstallation.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pyinstallation.html#install-with-pip">Install with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pyinstallation.html#install-from-source">Install from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basicusage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basicusage.html#module-import">Module import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basicusage.html#minimal-dmft-loop">Minimal DMFT loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../globvars.html">Global variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.beta"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.beta</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.chidens_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chidens_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.chiexct_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chiexct_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.chipair_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chipair_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.chispin_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chispin_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Jh"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.dmft_error"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.dmft_error</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.ed_total_ud"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_total_ud</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.ed_twin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_twin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.eps"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.eps</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Jx"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Jp"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Lmats"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lmats</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.LOGfile"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.LOGfile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Lpos"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lpos</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Lreal"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lreal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Ltau"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ltau</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Nbath"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nbath</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Nloop"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nloop</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Norb"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Norb</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Nph"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nph</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.nread"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.nread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Nspin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nspin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Nsuccess"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nsuccess</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.pair_field"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.pair_field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.rdm_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.rdm_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.sb_field"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.sb_field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Uloc"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Uloc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.Ust"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ust</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.wini"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wini</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.wfin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wfin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.xmin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.xmax"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmax</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../globvars.html#edipack2py.global_env.xmu"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmu</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/0_readinput.html">Input file manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/0_readinput.html#edipack2py.global_env.read_input"><code class="docutils literal notranslate"><span class="pre">read_input()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/1_solver.html">Impurity Problem Initialization, Solution and Finalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/1_solver.html#edipack2py.global_env.finalize_solver"><code class="docutils literal notranslate"><span class="pre">finalize_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/1_solver.html#edipack2py.global_env.init_solver"><code class="docutils literal notranslate"><span class="pre">init_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/1_solver.html#edipack2py.global_env.set_hloc"><code class="docutils literal notranslate"><span class="pre">set_hloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/1_solver.html#edipack2py.global_env.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/2_bath.html">Bath Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.bath_inspect"><code class="docutils literal notranslate"><span class="pre">bath_inspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.break_symmetry_bath"><code class="docutils literal notranslate"><span class="pre">break_symmetry_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.chi2_fitgf"><code class="docutils literal notranslate"><span class="pre">chi2_fitgf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.get_bath_dimension"><code class="docutils literal notranslate"><span class="pre">get_bath_dimension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.orb_equality_bath"><code class="docutils literal notranslate"><span class="pre">orb_equality_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.orb_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">orb_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.ph_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">ph_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.save_array_as_bath"><code class="docutils literal notranslate"><span class="pre">save_array_as_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.set_hgeneral"><code class="docutils literal notranslate"><span class="pre">set_hgeneral()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.set_hreplica"><code class="docutils literal notranslate"><span class="pre">set_hreplica()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/2_bath.html#edipack2py.global_env.spin_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">spin_symmetrize_bath()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/3_inputoutput.html">Input / Output Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_dens"><code class="docutils literal notranslate"><span class="pre">get_dens()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_docc"><code class="docutils literal notranslate"><span class="pre">get_docc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_eimp"><code class="docutils literal notranslate"><span class="pre">get_eimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_mag"><code class="docutils literal notranslate"><span class="pre">get_mag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_phi"><code class="docutils literal notranslate"><span class="pre">get_phi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_gimp"><code class="docutils literal notranslate"><span class="pre">get_gimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_sigma"><code class="docutils literal notranslate"><span class="pre">get_sigma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_g0and"><code class="docutils literal notranslate"><span class="pre">get_g0and()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_delta"><code class="docutils literal notranslate"><span class="pre">get_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_chi"><code class="docutils literal notranslate"><span class="pre">get_chi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/3_inputoutput.html#edipack2py.global_env.get_impurity_rdm"><code class="docutils literal notranslate"><span class="pre">get_impurity_rdm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/4_auxiliary.html">Auxiliary procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/4_auxiliary.html#edipack2py.global_env.check_convergence"><code class="docutils literal notranslate"><span class="pre">check_convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/4_auxiliary.html#edipack2py.global_env.get_bath_type"><code class="docutils literal notranslate"><span class="pre">get_bath_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/4_auxiliary.html#edipack2py.global_env.get_ed_mode"><code class="docutils literal notranslate"><span class="pre">get_ed_mode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/4_auxiliary.html#edipack2py.global_env.search_variable"><code class="docutils literal notranslate"><span class="pre">search_variable()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../funcs/5_interaction_matrix_parsing.html">Interaction matrix parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.add_twobody_operator"><code class="docutils literal notranslate"><span class="pre">add_twobody_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.reset_umatrix"><code class="docutils literal notranslate"><span class="pre">reset_umatrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TRIQS compatibility layer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../edipack2triqs.html">TRIQS compatibility layer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack2py">EDIpack2py on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack">EDIpack on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SciFortran/SciFortran">SciFortran on GitHub</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EDIpack2py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">edipack2py.func_bath_fit</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for edipack2py.func_bath_fit</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ctypes</span> <span class="k">as</span> <span class="nn">ct</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">types</span>
+
+
+<div class="viewcode-block" id="chi2_fitgf">
+<a class="viewcode-back" href="../../funcs/2_bath.html#edipack2py.global_env.chi2_fitgf">[docs]</a>
+<span class="k">def</span> <span class="nf">chi2_fitgf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ispin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">iorb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fmpi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      This function fits the Weiss field or Hybridization function (delta) with \</span>
+<span class="sd">      a discrete set of level. The fit parameters are the bath parameters \</span>
+<span class="sd">      contained in the user-accessible array. Depending on the type of system \</span>
+<span class="sd">      we are considering (normal, superconductive, non-SU(2)) \</span>
+<span class="sd">      a different set of inputs has to be passed. The specifics of the numerical\</span>
+<span class="sd">      fitting routines are controlled in the input file.</span>
+<span class="sd">       </span>
+<span class="sd">        </span>
+<span class="sd">      :type args: [np.array(dtype=complex,np.array(dtype=complex), \</span>
+<span class="sd">      np.array(dtype=float)] or [np.array(dtype=complex, \</span>
+<span class="sd">      np.array(dtype=float)]</span>
+<span class="sd">      :param args: The positional arguments are the function(s) \</span>
+<span class="sd">      to fit and the bath array. </span>
+<span class="sd">       </span>
+<span class="sd">       If the system is not superconductive ( :f:var:`ed_mode` = :code:`NORMAL` or\</span>
+<span class="sd">        :f:var:`ed_mode` = :code:`NONSU2`) the argumens are</span>
+<span class="sd">      </span>
+<span class="sd">       * :code:`g`: the function to fit</span>
+<span class="sd">       * :code:`bath`: the bath</span>
+<span class="sd">      </span>
+<span class="sd">       If the system is superconductive ( :f:var:`ed_mode` = :code:`SUPERC`) the \</span>
+<span class="sd">       arguments are</span>
+
+<span class="sd">       * :code:`g`: the normal function to fit</span>
+<span class="sd">       * :code:`f`: the anomalous function to fit</span>
+<span class="sd">       * :code:`bath`: the bath </span>
+<span class="sd">       </span>
+<span class="sd">       The dimensions of the previous arrays can vary:</span>
+<span class="sd">       </span>
+<span class="sd">       The dimension of :code:`bath` can be</span>
+<span class="sd">     </span>
+<span class="sd">       * :code:`Nb`: if single-impurity, the output of :func:`get_bath_gimension`</span>
+<span class="sd">       * :code:`[Nlat ,Nb]`: if real-space DMFT</span>
+<span class="sd">       </span>
+<span class="sd">       Accordingly, the dimension of g (and f) can be:</span>
+<span class="sd">       </span>
+<span class="sd">       * :code:`3`: in the single-impurity case,  an array of \</span>
+<span class="sd">         the shape [ :data:`Nspin` :math:`\\cdot` :data:`Norb` ,  :data:`Nspin` \</span>
+<span class="sd">         :math:`\\cdot` :data:`Norb` , :data:`Lmats` ]. </span>
+<span class="sd">       * :code:`3`: in the real-space DMFT case, an array of \</span>
+<span class="sd">         the shape [ :code:`Nlat` :math:`\\cdot` :data:`Nspin` :math:`\\cdot` \</span>
+<span class="sd">         :data:`Norb` ,  :code:`Nlat` :math:`\\cdot` :data:`Nspin` :math:`\\cdot` \</span>
+<span class="sd">         :data:`Norb` , :data:`Lmats` ]</span>
+<span class="sd">       * :code:`4`: in the real-space DMFT case, an array of \</span>
+<span class="sd">         the shape [ :code:`Nlat` ,  :data:`Nspin` :math:`\\cdot` \</span>
+<span class="sd">         :data:`Norb` ,  :data:`Nspin` :math:`\\cdot` :data:`Norb` , :data:`Lmats` ]</span>
+<span class="sd">       * :code:`5`: in the single-impurity case, an array of \</span>
+<span class="sd">         the shape [ :data:`Nspin` ,  :data:`Nspin` ,  :data:`Norb` ,  \</span>
+<span class="sd">         :data:`Norb` , :data:`Lmats` ]</span>
+<span class="sd">       * :code:`6`: in the real-space DMFT case, an array of \</span>
+<span class="sd">         the shape [ :code:`Nlat` ,  :data:`Nspin` ,  :data:`Nspin` ,  \</span>
+<span class="sd">         :data:`Norb` ,  :data:`Norb` , :data:`Lmats` ]       </span>
+<span class="sd">     </span>
+<span class="sd">      :type ispin: int </span>
+<span class="sd">      :param ispin: spin species to be fitted. For the normal case, \</span>
+<span class="sd">      if :data:`Nspin` = :code:`2`, the fitting function \</span>
+<span class="sd">      needs to be called twice. Only the corresponding elements of :code:`bath` \</span>
+<span class="sd">      will be updated each time. For the non-SU(2) case, this argument is \</span>
+<span class="sd">      irrelevant, since all the elements of the Weiss/Delta function need to be \</span>
+<span class="sd">      fitted. This is also the case if :f:var:`bath_type` = :code:`REPLICA, GENERAL`.</span>
+<span class="sd">        </span>
+<span class="sd">      :type iorb: int </span>
+<span class="sd">      :param iorb: the orbital to be fitted. If omitted, all orbitals will be fitted</span>
+<span class="sd">       </span>
+<span class="sd">      :type fmpi: bool </span>
+<span class="sd">      :param fmpi: flag to automatically do and broadcast the fit over MPI, if defined</span>
+
+<span class="sd">      :raise ValueError: if the shapes of the positional arguments are incompatible</span>
+<span class="sd">      :raise ValueError: if a number of positional arguments different \</span>
+<span class="sd">       from 2 or 3 are passed   </span>
+<span class="sd">         </span>
+<span class="sd">      :return: An array of floats that contains the bath parameters \</span>
+<span class="sd">       for the impurity problem. This is a required input of :func:`solve` \</span>
+<span class="sd">       and :func:`chi2_fitgf`. Its elements are ordered differently \</span>
+<span class="sd">       depending on the bath geometry. They are (de)compactified for \</span>
+<span class="sd">       user interaction via :func:`bath_inspect`. Specific \</span>
+<span class="sd">       symmetrization operations are implemented and listed in \</span>
+<span class="sd">       the :ref:`bath` section.</span>
+<span class="sd">      :rtype: np.array(dtype=float) </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">nbath_aux</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="o">.</span><span class="n">in_dll</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="p">,</span> <span class="s2">&quot;Nbath&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">nbath_aux</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nbath=0. No bath to fit&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># single normal</span>
+    <span class="n">chi2_fitgf_single_normal_n3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_single_normal_n3</span>
+    <span class="n">chi2_fitgf_single_normal_n3</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">chi2_fitgf_single_normal_n3</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">chi2_fitgf_single_normal_n5</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_single_normal_n5</span>
+    <span class="n">chi2_fitgf_single_normal_n5</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">chi2_fitgf_single_normal_n5</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># single superc</span>
+    <span class="n">chi2_fitgf_single_superc_n3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_single_superc_n3</span>
+    <span class="n">chi2_fitgf_single_superc_n3</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">chi2_fitgf_single_superc_n3</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">chi2_fitgf_single_superc_n5</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_single_superc_n5</span>
+    <span class="n">chi2_fitgf_single_superc_n5</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">chi2_fitgf_single_superc_n5</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_ineq</span><span class="p">:</span>
+        <span class="c1"># lattice normal</span>
+        <span class="n">chi2_fitgf_lattice_normal_n3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_normal_n3</span>
+        <span class="n">chi2_fitgf_lattice_normal_n3</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_normal_n3</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">chi2_fitgf_lattice_normal_n4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_normal_n4</span>
+        <span class="n">chi2_fitgf_lattice_normal_n4</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_normal_n4</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">chi2_fitgf_lattice_normal_n6</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_normal_n6</span>
+        <span class="n">chi2_fitgf_lattice_normal_n6</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_normal_n6</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># lattice superc</span>
+        <span class="n">chi2_fitgf_lattice_superc_n3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_superc_n3</span>
+        <span class="n">chi2_fitgf_lattice_superc_n3</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_superc_n3</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">chi2_fitgf_lattice_superc_n4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_superc_n4</span>
+        <span class="n">chi2_fitgf_lattice_superc_n4</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_superc_n4</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">chi2_fitgf_lattice_superc_n6</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">chi2_fitgf_lattice_superc_n6</span>
+        <span class="n">chi2_fitgf_lattice_superc_n6</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s2">&quot;F_CONTIGUOUS&quot;</span><span class="p">),</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">chi2_fitgf_lattice_superc_n6</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># main function</span>
+    <span class="n">ispin</span> <span class="o">=</span> <span class="n">ispin</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">iorb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">iorb</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">iorb</span> <span class="o">=</span> <span class="n">iorb</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># normal</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">bath</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">bath_copy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+        <span class="n">dim_g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">dim_bath</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">bath_copy</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_bath</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># single</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">chi2_fitgf_single_normal_n3</span><span class="p">(</span>
+                    <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">,</span> <span class="n">iorb</span><span class="p">,</span> <span class="n">fmpi</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="n">chi2_fitgf_single_normal_n5</span><span class="p">(</span>
+                    <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">,</span> <span class="n">iorb</span><span class="p">,</span> <span class="n">fmpi</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_normal: takes dim(g) = 3 or 5&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_bath</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># lattice</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_ineq</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_normal_n3</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_normal_n4</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_normal_n6</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_normal: takes dim(g) = 3 or 5&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Can&#39;t use r-DMFT routines without installing EDIpack2ineq&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_normal: takes dim(bath) = 1 or 2&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># superc</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">bath</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">bath_copy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+        <span class="n">dim_g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">dim_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="n">dim_bath</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">bath_copy</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_bath</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># single</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">chi2_fitgf_single_superc_n3</span><span class="p">(</span>
+                    <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dim_f</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">,</span> <span class="n">iorb</span><span class="p">,</span> <span class="n">fmpi</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="n">chi2_fitgf_single_superc_n5</span><span class="p">(</span>
+                    <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dim_f</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span><span class="p">,</span> <span class="n">iorb</span><span class="p">,</span> <span class="n">fmpi</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_superc: takes dim(g,f) = 3 or 5&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_bath</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># lattice</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_ineq</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_superc_n3</span><span class="p">(</span>
+                        <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dim_f</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_superc_n4</span><span class="p">(</span>
+                        <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dim_f</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                    <span class="n">chi2_fitgf_lattice_superc_n6</span><span class="p">(</span>
+                        <span class="n">g</span><span class="p">,</span> <span class="n">dim_g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dim_f</span><span class="p">,</span> <span class="n">bath_copy</span><span class="p">,</span> <span class="n">dim_bath</span><span class="p">,</span> <span class="n">ispin</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_superc: takes dim(g,f) = 3 or 5&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Can&#39;t use r-DMFT routines without installing EDIpack2ineq&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf_superc: takes dim(bath) = 1 or 2&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;chi_fitgf: takes g,bath or g,f,bath&quot;</span><span class="p">)</span>
+
+    <span class="n">bath_copy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">bath_copy</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bath_copy</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Lorenzo Crippa and Adriano Amaricci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
