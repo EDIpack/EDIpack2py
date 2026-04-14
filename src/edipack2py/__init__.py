@@ -81,6 +81,7 @@ global_funcs_dict = {
         "set_hloc",
         "search_variable",
         "check_convergence",
+        "set_phonon_coefficients"
     ],
     "func_bath": [
         "get_bath_dimension",
