@@ -109,6 +109,8 @@ global_funcs_dict = {
         "get_eimp",
         "get_chi",
         "get_impurity_rdm",
+        "get_dimp",
+        "get_denmat"
     ],
     "func_bath_fit": ["chi2_fitgf"],
 }
