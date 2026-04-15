@@ -1491,7 +1491,7 @@ def get_dimp(self, zeta=None, axis=None):
             elif axis == "r":
                 axisflag = 1
             else:
-                raise ValueError("axis can only be m, r or t")
+                raise ValueError("axis can only be 'm' or 'r'")
             nfreq = np.shape(zeta)[0]
 
     zeta = np.asfortranarray(zeta)
@@ -1539,10 +1539,7 @@ def get_denmat(self, ishape=4, doprint=False):
     ]
     ed_get_denmat_n4.restype = None
 
-    if doprint:
-        doprintflag=1
-    else:
-        doprintflag=0
+    doprint = int(doprint)
     
     if self.Nineq != 0:
         raise RuntimeError("get_denmat not implemented for inequivalent sites yet.")
@@ -1553,24 +1550,23 @@ def get_denmat(self, ishape=4, doprint=False):
     
     bath_type = self.get_bath_type()
     
-    if bath_type == 1 or bath_type == 3:
+    if bath_type == 1 or bath_type > 3:
         Ns = (aux_nbath + 1) * aux_norb
     elif bath_type == 2:
         Ns = aux_nbath + aux_norb
     else:
-        raise ValueError("get_denmat: wrong bath type")
-        
+        raise ValueError("get_denmat: wrong bath type")      
     
     if ishape == 4:
         denmat = np.zeros([aux_nspin,aux_nspin,Ns,Ns], dtype=complex, order="F")
-        ed_get_denmat_n4(denmat,doprintflag)
+        ed_get_denmat_n4(denmat,doprint)
     elif ishape == 2:
         denmat = np.zeros([aux_nspin*Ns,aux_nspin*Ns], dtype=complex, order="F")
-        ed_get_denmat_n2(denmat,doprintflag)
+        ed_get_denmat_n2(denmat,doprint)
     else:
         raise ValueError("get_denmat: wrong ishape")
 
     
     denmat = np.ascontiguousarray(denmat)
     
-    return dimp
+    return denmat
