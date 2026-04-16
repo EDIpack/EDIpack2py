@@ -1432,11 +1432,12 @@ def get_impurity_rdm(self, doprint=False):
     rdm = np.ascontiguousarray(rdm)
 
     return rdm
-    
-    
+
+
 #######################
 #   DIMP              #
 #######################
+
 
 def get_dimp(self, zeta=None, axis=None):
     """
@@ -1495,34 +1496,35 @@ def get_dimp(self, zeta=None, axis=None):
             nfreq = np.shape(zeta)[0]
 
     zeta = np.asfortranarray(zeta)
-    
+
     dimp = np.zeros([nfreq], dtype=complex, order="F")
     ed_get_dimp(dimp, axisflag, zeta, nfreq, zetaflag)
-    
+
     dimp = np.ascontiguousarray(dimp)
-    
+
     return dimp
-    
-    
+
+
 #######################
 #   1BDM              #
 #######################
 
+
 def get_denmat(self, ishape=4, doprint=False):
     """
-    
+
     This function returns the 1-body density matrix
-   
+
     :type ishape: int
     :param ishape: the rank of the density matrix array. Possible values :code:`2,4` .
 
     :type doprint: bool
     :param doprint: flag to print the rdm.
-   
-    :return: the 1-body density matrix of shape :code:`(Nspin,Nspin,Ns,Ns)` or 
+
+    :return: the 1-body density matrix of shape :code:`(Nspin,Nspin,Ns,Ns)` or
      :code:`(Nspin Ns,Nspin Ns)` where :code:`Ns` is the total number of levels per spin.
-    :rtype: np.array(dtype=complex) 
-    
+    :rtype: np.array(dtype=complex)
+
     """
 
     ed_get_denmat_n2 = self.library.ed_get_denmat_n2
@@ -1531,7 +1533,7 @@ def get_denmat(self, ishape=4, doprint=False):
         ct.c_int,  # printflag
     ]
     ed_get_denmat_n2.restype = None
-    
+
     ed_get_denmat_n4 = self.library.ed_get_denmat_n4
     ed_get_denmat_n2.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # denmat
@@ -1540,33 +1542,32 @@ def get_denmat(self, ishape=4, doprint=False):
     ed_get_denmat_n4.restype = None
 
     doprint = int(doprint)
-    
+
     if self.Nineq != 0:
         raise RuntimeError("get_denmat not implemented for inequivalent sites yet.")
-    
-    aux_norb  = ct.c_int.in_dll(self.library, "Norb").value
+
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
     aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
     aux_nbath = ct.c_int.in_dll(self.library, "Nbath").value
-    
+
     bath_type = self.get_bath_type()
-    
+
     if bath_type == 1 or bath_type > 3:
         Ns = (aux_nbath + 1) * aux_norb
     elif bath_type == 2:
         Ns = aux_nbath + aux_norb
     else:
-        raise ValueError("get_denmat: wrong bath type")      
-    
+        raise ValueError("get_denmat: wrong bath type")
+
     if ishape == 4:
-        denmat = np.zeros([aux_nspin,aux_nspin,Ns,Ns], dtype=complex, order="F")
-        ed_get_denmat_n4(denmat,doprint)
+        denmat = np.zeros([aux_nspin, aux_nspin, Ns, Ns], dtype=complex, order="F")
+        ed_get_denmat_n4(denmat, doprint)
     elif ishape == 2:
-        denmat = np.zeros([aux_nspin*Ns,aux_nspin*Ns], dtype=complex, order="F")
-        ed_get_denmat_n2(denmat,doprint)
+        denmat = np.zeros([aux_nspin * Ns, aux_nspin * Ns], dtype=complex, order="F")
+        ed_get_denmat_n2(denmat, doprint)
     else:
         raise ValueError("get_denmat: wrong ishape")
 
-    
     denmat = np.ascontiguousarray(denmat)
-    
+
     return denmat

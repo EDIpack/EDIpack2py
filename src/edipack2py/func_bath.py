@@ -631,8 +631,6 @@ def save_array_as_bath(self, bath):
 
 # auxiliary functions to get/set bath structure. Only works for single-site.
 # User has to do a loop on sites
-
-
 def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
     """
        This function translates between the user-accessible continuous \

@@ -364,44 +364,52 @@ def get_ed_mode(self):
     get_ed_mode_wrap.argtypes = None
     get_ed_mode_wrap.restype = ct.c_int
     return get_ed_mode_wrap()
-    
-    
+
+
 # set phonons displacement and coupling
 def set_phonon_coefficients(self, displacement=None, coupling=None):
     """
 
     This function sets new values for the phonon displacement field
     and the electron-phonon coupling matrix
-    
-    :type displacement: float 
+
+    :type displacement: float
     :param displacement: phonon displacement field
-    
-    :type coupling: np.array(float) 
-    :param coupling: electron-phonon coupling matrix of shape  ( :code:`Norb` ) or ( :code:`Norb`, :code:`Norb` ) 
+
+    :type coupling: np.array(complex)
+    :param coupling: electron-phonon coupling matrix of shape  ( :code:`Norb` ) or ( :code:`Norb`, :code:`Norb` )
 
     """
 
     set_a_ph = self.library.ed_set_A_ph
-    set_a_ph.argtypes = [np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")]
+    set_a_ph.argtypes = [
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
+    ]
     set_a_ph.restype = None
-    
+
     set_g_ph = self.library.ed_set_G_ph
-    set_g_ph.argtypes = [np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")]
+    set_g_ph.argtypes = [
+        np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS")
+    ]
     set_g_ph.restype = None
-    
+
     aux_norb = ct.c_int.in_dll(self.library, "Norb").value
-    
-    if displacement==None and coupling==None:
-        raise RuntimeError("set_phonon_coefficients: provide at least either disp or coupling")
-    
+
+    if displacement == None and coupling == None:
+        raise RuntimeError(
+            "set_phonon_coefficients: provide at least either disp or coupling"
+        )
+
     if displacement != None:
-        set_a_ph(np.array([displacement],order="F"))
-        
+        set_a_ph(np.array([displacement], order="F"))
+
     if coupling != None:
         if np.shape(copuling) == (aux_norb,):
-            coupling = np.array(np.diag(coupling),order="F")
-        elif np.shape(copuling) != (aux_norb,aux_norb):
-            raise ValueError("set_phonon_coefficients: coupling shape is (Norb) or (Norb,Norb)")
+            coupling = np.array(np.diag(coupling), order="F")
+        elif np.shape(copuling) != (aux_norb, aux_norb):
+            raise ValueError(
+                "set_phonon_coefficients: coupling shape is (Norb) or (Norb,Norb)"
+            )
         set_g_ph(coupling)
-    
+
     return

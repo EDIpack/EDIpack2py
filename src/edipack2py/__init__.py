@@ -1,7 +1,6 @@
 import ctypes as ct
 import importlib
 
-
 try:
     from importlib.metadata import version, PackageNotFoundError
 except ImportError:  # For Python <3.8
@@ -81,7 +80,7 @@ global_funcs_dict = {
         "set_hloc",
         "search_variable",
         "check_convergence",
-        "set_phonon_coefficients"
+        "set_phonon_coefficients",
     ],
     "func_bath": [
         "get_bath_dimension",
@@ -111,7 +110,7 @@ global_funcs_dict = {
         "get_chi",
         "get_impurity_rdm",
         "get_dimp",
-        "get_denmat"
+        "get_denmat",
     ],
     "func_bath_fit": ["chi2_fitgf"],
 }

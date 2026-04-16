@@ -6,7 +6,6 @@ import types
 import pkgconfig
 import warnings
 
-
 #############################################
 # Function that finds and loads the library #
 #############################################
