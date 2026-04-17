@@ -1554,7 +1554,7 @@ def get_denmat(self, ishape=4, doprint=False):
 
     bath_type = self.get_bath_type()
 
-    if bath_type == 1 or bath_type > 3:
+    if bath_type in [1,3,4]:
         Ns = (aux_nbath + 1) * aux_norb
     elif bath_type == 2:
         Ns = aux_nbath + aux_norb
