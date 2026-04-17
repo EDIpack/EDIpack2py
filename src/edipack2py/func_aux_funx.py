@@ -397,7 +397,7 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
 
     if displacement == None and coupling == None:
         raise RuntimeError(
-            "set_phonon_coefficients: provide at least either disp or coupling"
+            "set_phonon_coefficients: provide at least either displacement or coupling"
         )
 
     if displacement != None:
