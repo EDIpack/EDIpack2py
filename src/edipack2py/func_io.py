@@ -1456,7 +1456,7 @@ def get_dimp(self, zeta=None, axis=None):
     :rtype: np.array(dtype=complex) 
     
     """
-    ed_get_dimp = self.library.ed_get_dimp
+    ed_get_dimp = self.library.get_dimp_site_n1
     ed_get_dimp.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # dimp
         ct.c_int,  # axis
