@@ -381,13 +381,13 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
 
     """
 
-    set_a_ph = self.library.set_A_ph
+    set_a_ph = self.library.ed_set_A_ph
     set_a_ph.argtypes = [
         np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
     ]
     set_a_ph.restype = None
 
-    set_g_ph = self.library.set_G_ph
+    set_g_ph = self.library.eg_set_G_ph
     set_g_ph.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS")
     ]
