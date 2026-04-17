@@ -1536,7 +1536,7 @@ def get_denmat(self, ishape=4, doprint=False):
     ed_get_denmat_n2.restype = None
 
     ed_get_denmat_n4 = self.library.ed_get_denmat_n4
-    ed_get_denmat_n2.argtypes = [
+    ed_get_denmat_n4.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # denmat
         np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"), # dimdenmat
         ct.c_int,  # doprint
@@ -1563,11 +1563,11 @@ def get_denmat(self, ishape=4, doprint=False):
 
     if ishape == 4:
         dimdenmat=np.array([aux_nspin,aux_nspin, Ns, Ns], dtype=int, order="F")
-        denmat = np.zeros([aux_nspin, aux_nspin, Ns, Ns], dtype=complex, order="F")
+        denmat = np.zeros((aux_nspin, aux_nspin, Ns, Ns), dtype=complex, order="F")
         ed_get_denmat_n4(denmat, dimdenmat, doprint)
     elif ishape == 2:
         dimdenmat=np.array([aux_nspin * Ns, aux_nspin * Ns], dtype=int, order="F")
-        denmat = np.zeros([aux_nspin * Ns, aux_nspin * Ns], dtype=complex, order="F")
+        denmat = np.zeros((aux_nspin * Ns, aux_nspin * Ns), dtype=complex, order="F")
         ed_get_denmat_n2(denmat, dimdenmat, doprint)
     else:
         raise ValueError("get_denmat: wrong ishape")
