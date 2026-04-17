@@ -395,7 +395,7 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
 
     aux_norb = ct.c_int.in_dll(self.library, "Norb").value
 
-    if displacement == None and coupling == None:
+    if displacement is None and coupling is None:
         raise RuntimeError(
             "set_phonon_coefficients: provide at least either displacement or coupling"
         )
@@ -404,9 +404,9 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
         set_a_ph(np.array([displacement], order="F"))
 
     if coupling is not None:
-        if np.shape(copuling) == (aux_norb,):
+        if np.shape(coupling) == (aux_norb,):
             coupling = np.array(np.diag(coupling), order="F")
-        elif np.shape(copuling) != (aux_norb, aux_norb):
+        elif np.shape(coupling) != (aux_norb, aux_norb):
             raise ValueError(
                 "set_phonon_coefficients: coupling shape is (Norb) or (Norb,Norb)"
             )
