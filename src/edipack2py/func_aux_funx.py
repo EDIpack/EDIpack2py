@@ -400,10 +400,10 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
             "set_phonon_coefficients: provide at least either displacement or coupling"
         )
 
-    if displacement != None:
+    if displacement is not None:
         set_a_ph(np.array([displacement], order="F"))
 
-    if coupling != None:
+    if coupling is not None:
         if np.shape(copuling) == (aux_norb,):
             coupling = np.array(np.diag(coupling), order="F")
         elif np.shape(copuling) != (aux_norb, aux_norb):
