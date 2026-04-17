@@ -1519,7 +1519,7 @@ def get_denmat(self, ishape=4, doprint=False):
     :param ishape: the rank of the density matrix array. Possible values :code:`2,4` .
 
     :type doprint: bool
-    :param doprint: flag to print the rdm.
+    :param doprint: flag to print the density matrix.
 
     :return: the 1-body density matrix of shape :code:`(Nspin,Nspin,Ns,Ns)` or
      :code:`(Nspin Ns,Nspin Ns)` where :code:`Ns` is the total number of levels per spin.
@@ -1530,14 +1530,16 @@ def get_denmat(self, ishape=4, doprint=False):
     ed_get_denmat_n2 = self.library.ed_get_denmat_n2
     ed_get_denmat_n2.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),  # denmat
-        ct.c_int,  # printflag
+        np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"), # dimdenmat
+        ct.c_int,  # doprint
     ]
     ed_get_denmat_n2.restype = None
 
     ed_get_denmat_n4 = self.library.ed_get_denmat_n4
     ed_get_denmat_n2.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # denmat
-        ct.c_int,  # printflag
+        np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"), # dimdenmat
+        ct.c_int,  # doprint
     ]
     ed_get_denmat_n4.restype = None
 
@@ -1557,14 +1559,16 @@ def get_denmat(self, ishape=4, doprint=False):
     elif bath_type == 2:
         Ns = aux_nbath + aux_norb
     else:
-        raise ValueError("get_denmat: wrong bath type")
+        raise ValueError("get_denmat: wrong bath type")       
 
     if ishape == 4:
+        dimdenmat=np.array([aux_nspin,aux_nspin, Ns, Ns], dtype=int, order="F")
         denmat = np.zeros([aux_nspin, aux_nspin, Ns, Ns], dtype=complex, order="F")
-        ed_get_denmat_n4(denmat, doprint)
+        ed_get_denmat_n4(denmat, dimdenmat, doprint)
     elif ishape == 2:
+        dimdenmat=np.array([aux_nspin * Ns, aux_nspin * Ns], dtype=int, order="F")
         denmat = np.zeros([aux_nspin * Ns, aux_nspin * Ns], dtype=complex, order="F")
-        ed_get_denmat_n2(denmat, doprint)
+        ed_get_denmat_n2(denmat, dimdenmat, doprint)
     else:
         raise ValueError("get_denmat: wrong ishape")
 
