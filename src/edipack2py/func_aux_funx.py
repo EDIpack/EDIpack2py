@@ -405,11 +405,11 @@ def set_phonon_coefficients(self, displacement=None, coupling=None):
 
     if coupling is not None:
         if np.shape(coupling) == (aux_norb,):
-            coupling = np.array(np.diag(coupling), order="F")
+            coupling = np.diag(coupling)
         elif np.shape(coupling) != (aux_norb, aux_norb):
             raise ValueError(
                 "set_phonon_coefficients: coupling shape is (Norb) or (Norb,Norb)"
             )
-        set_g_ph(coupling)
+        set_g_ph(np.array(coupling, order="F"))
 
     return
