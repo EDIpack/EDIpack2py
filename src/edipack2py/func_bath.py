@@ -721,62 +721,62 @@ def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
     shape3 = (Nspin, Norb, Nbath)
 
     SPEC = {
-        #normal mode, normal bath
+        # normal mode, normal bath
         (1, 1): dict(
             fields={"e": shape3, "v": shape3},
             order=["e", "v"],
         ),
-        #superc mode, normal bath
+        # superc mode, normal bath
         (2, 1): dict(
             fields={"e": shape3, "d": shape3, "v": shape3},
             order=["e", "d", "v"],
         ),
-        #nonsu2 mode, normal bath
+        # nonsu2 mode, normal bath
         (3, 1): dict(
             fields={"e": shape3, "v": shape3, "u": shape3},
             order=["e", "v", "u"],
         ),
-        #normal mode, hybrid bath
+        # normal mode, hybrid bath
         (1, 2): dict(
             fields={"e": (Nspin, Nbath), "v": shape3},
             order=["e", "v"],
         ),
-        #superc mode, hybrid bath
+        # superc mode, hybrid bath
         (2, 2): dict(
             fields={"e": (Nspin, Nbath), "d": (Nspin, Nbath), "v": shape3},
             order=["e", "d", "v"],
         ),
-        #nonsu2 mode, hybrid bath
+        # nonsu2 mode, hybrid bath
         (3, 2): dict(
             fields={"e": (Nspin, Nbath), "v": shape3, "u": shape3},
             order=["e", "v", "u"],
         ),
-        #normal mode, replica bath
+        # normal mode, replica bath
         (1, 3): dict(
             fields={"v": (Nbath,), "l": (Nbath, Nsym)},
             order=["v", "l"],
         ),
-        #superc mode, replica bath
+        # superc mode, replica bath
         (2, 3): dict(
             fields={"v": (Nbath,), "l": (Nbath, Nsym)},
             order=["v", "l"],
         ),
-        #nonsu2 mode, replica bath
+        # nonsu2 mode, replica bath
         (3, 3): dict(
             fields={"v": (Nbath,), "l": (Nbath, Nsym)},
             order=["v", "l"],
         ),
-        #normal mode, general bath
+        # normal mode, general bath
         (1, 4): dict(
             fields={"v": (Nbath, Nspin * Norb), "l": (Nbath, Nsym)},
             order=["v", "l"],
         ),
-        #superc mode, general bath
+        # superc mode, general bath
         (2, 4): dict(
             fields={"v": (Nbath, Nspin * Norb), "l": (Nbath, Nsym)},
             order=["v", "l"],
         ),
-        #nonsu2 mode, general bath
+        # nonsu2 mode, general bath
         (3, 4): dict(
             fields={"v": (Nbath, Nspin * Norb), "l": (Nbath, Nsym)},
             order=["v", "l"],
