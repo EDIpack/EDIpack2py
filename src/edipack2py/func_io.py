@@ -1530,7 +1530,9 @@ def get_denmat(self, ishape=4, doprint=False):
     ed_get_denmat_n2 = self.library.ed_get_denmat_n2
     ed_get_denmat_n2.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),  # denmat
-        np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"), # dimdenmat
+        np.ctypeslib.ndpointer(
+            dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
+        ),  # dimdenmat
         ct.c_int,  # doprint
     ]
     ed_get_denmat_n2.restype = None
@@ -1538,7 +1540,9 @@ def get_denmat(self, ishape=4, doprint=False):
     ed_get_denmat_n4 = self.library.ed_get_denmat_n4
     ed_get_denmat_n4.argtypes = [
         np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # denmat
-        np.ctypeslib.ndpointer(dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"), # dimdenmat
+        np.ctypeslib.ndpointer(
+            dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
+        ),  # dimdenmat
         ct.c_int,  # doprint
     ]
     ed_get_denmat_n4.restype = None
@@ -1554,19 +1558,19 @@ def get_denmat(self, ishape=4, doprint=False):
 
     bath_type = self.get_bath_type()
 
-    if bath_type in [1,3,4]:
+    if bath_type in [1, 3, 4]:
         Ns = (aux_nbath + 1) * aux_norb
     elif bath_type == 2:
         Ns = aux_nbath + aux_norb
     else:
-        raise ValueError("get_denmat: wrong bath type")       
+        raise ValueError("get_denmat: wrong bath type")
 
     if ishape == 4:
-        dimdenmat=np.array([aux_nspin,aux_nspin, Ns, Ns], dtype=int, order="F")
+        dimdenmat = np.array([aux_nspin, aux_nspin, Ns, Ns], dtype=int, order="F")
         denmat = np.zeros((aux_nspin, aux_nspin, Ns, Ns), dtype=complex, order="F")
         ed_get_denmat_n4(denmat, dimdenmat, doprint)
     elif ishape == 2:
-        dimdenmat=np.array([aux_nspin * Ns, aux_nspin * Ns], dtype=int, order="F")
+        dimdenmat = np.array([aux_nspin * Ns, aux_nspin * Ns], dtype=int, order="F")
         denmat = np.zeros((aux_nspin * Ns, aux_nspin * Ns), dtype=complex, order="F")
         ed_get_denmat_n2(denmat, dimdenmat, doprint)
     else:
