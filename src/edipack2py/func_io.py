@@ -1559,7 +1559,7 @@ def get_denmat(self, ishape=4, doprint=False):
     
 
     if self.get_ed_mode() == 2: 
-        aux_nspin = 2 * aux_nspin
+        aux_nspin = 2
 
     bath_type = self.get_bath_type()
 
