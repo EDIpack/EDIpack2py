@@ -1523,6 +1523,7 @@ def get_denmat(self, ishape=4, doprint=False):
 
     :return: the 1-body density matrix of shape :code:`(Nspin,Nspin,Ns,Ns)` or
      :code:`(Nspin Ns,Nspin Ns)` where :code:`Ns` is the total number of levels per spin.
+     If the calculation is superconductive, :code:`Nspin` is always 2.
     :rtype: np.array(dtype=complex)
 
     """
@@ -1546,7 +1547,7 @@ def get_denmat(self, ishape=4, doprint=False):
         ct.c_int,  # doprint
     ]
     ed_get_denmat_n4.restype = None
-
+    
     doprint = int(doprint)
 
     if self.Nineq != 0:
@@ -1555,6 +1556,10 @@ def get_denmat(self, ishape=4, doprint=False):
     aux_norb = ct.c_int.in_dll(self.library, "Norb").value
     aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
     aux_nbath = ct.c_int.in_dll(self.library, "Nbath").value
+    
+
+    if self.get_ed_mode() == 2: 
+        aux_nspin = 2 * aux_nspin
 
     bath_type = self.get_bath_type()
 
