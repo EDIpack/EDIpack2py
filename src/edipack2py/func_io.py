@@ -440,7 +440,7 @@ def get_ephon(self, ikind=None):
         
 
         * :code:`1`: ed_Eph: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
-        * :code:`2`: ed_Eph: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
+        * :code:`2`: ed_Eeph: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
             c^{\\dagger}_{i \\sigma} c_{j \\sigma} \\, (b^{\\dagger} + b)`
        
        :return: the full phonon energy tensor has dimensions [2]. The single component
