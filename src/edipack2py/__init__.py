@@ -120,4 +120,4 @@ global_funcs_dict = {
 for modname, funcnames in global_funcs_dict.items():
     mod = importlib.import_module(f"edipack2py.{modname}")
     for fname in funcnames:
-        global_env.add_method(getattr(mod, fname))
+        global_env.add_method(mod, fname)
