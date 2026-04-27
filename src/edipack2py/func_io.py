@@ -429,6 +429,7 @@ def get_eimp(self, ilat=None, ikind=None):
                 "Can't use r-DMFT routines without installing EDIpack2ineq"
             )
 
+
 # phonon energy
 def get_ephon(self, ikind=None):
     """
@@ -461,6 +462,7 @@ def get_ephon(self, ikind=None):
         return eimp_vec[ikind]
     else:
         return eimp_vec
+
 
 ########################
 #   SIGMA              #
@@ -1579,7 +1581,7 @@ def get_denmat(self, ishape=4, doprint=False):
         ct.c_int,  # doprint
     ]
     ed_get_denmat_n4.restype = None
-    
+
     doprint = int(doprint)
 
     if self.Nineq != 0:
@@ -1588,9 +1590,8 @@ def get_denmat(self, ishape=4, doprint=False):
     aux_norb = ct.c_int.in_dll(self.library, "Norb").value
     aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
     aux_nbath = ct.c_int.in_dll(self.library, "Nbath").value
-    
 
-    if self.get_ed_mode() == 2: 
+    if self.get_ed_mode() == 2:
         aux_nspin = 2
 
     bath_type = self.get_bath_type()
