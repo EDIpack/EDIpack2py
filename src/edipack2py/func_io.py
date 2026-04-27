@@ -430,17 +430,51 @@ def get_eimp(self, ilat=None, ikind=None):
             )
 
 
+# phonon observables
+def get_phon(self, ikind=None):
+    """
+    This function returns the value of the phonon observables
+
+    :type ikind: int
+    :param ikind: index of the component. It is
+
+
+     * :code:`1`: :math:`b^{\\dagger} b`
+     * :code:`2`: :math:`(b^{\\dagger} + b)/\\sqrt{2}`
+     * :code:`3`: :math:`(b^{\\dagger} + b)^{2}/2`
+
+    :return: the full phonon energy tensor has dimensions [3]. The single component
+     can be returned by specifying :code:`ikind`
+    :rtype: float **or** np.array(dtype=float)
+    """
+
+    ed_get_phon_wrap = self.library.ed_get_phon
+    ed_get_phon_wrap.argtypes = [
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
+    ]
+    ed_get_phon_wrap.restype = None
+
+    phon_vec = np.zeros(3, dtype=float, order="F")
+    ed_get_phon_wrap(phon_vec)
+    phon_vec = np.ascontiguousarray(phon_vec)
+
+    if ikind is not None:
+        return phon_vec[ikind]
+    else:
+        return phon_vec
+
+
 # phonon energy
 def get_ephon(self, ikind=None):
     """
-       This function returns the value of the local energy components
+       This function returns the value of the phononic energy contributions
                
        :type ikind: int
        :param ikind: index of the component. It is
         
 
-        * :code:`1`: ed_Eph: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
-        * :code:`2`: ed_Eeph: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
+        * :code:`1`: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
+        * :code:`2`: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
             c^{\\dagger}_{i \\sigma} c_{j \\sigma} \\, (b^{\\dagger} + b)`
        
        :return: the full phonon energy tensor has dimensions [2]. The single component
@@ -459,9 +493,9 @@ def get_ephon(self, ikind=None):
     ephon_vec = np.ascontiguousarray(ephon_vec)
 
     if ikind is not None:
-        return eimp_vec[ikind]
+        return ephon_vec[ikind]
     else:
-        return eimp_vec
+        return ephon_vec
 
 
 ########################
