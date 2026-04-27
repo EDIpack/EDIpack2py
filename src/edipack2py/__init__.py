@@ -107,6 +107,7 @@ global_funcs_dict = {
         "get_docc",
         "get_phi",
         "get_eimp",
+        "get_ephon",
         "get_chi",
         "get_impurity_rdm",
         "get_dimp",

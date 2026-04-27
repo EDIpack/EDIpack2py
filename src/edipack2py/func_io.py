@@ -429,6 +429,38 @@ def get_eimp(self, ilat=None, ikind=None):
                 "Can't use r-DMFT routines without installing EDIpack2ineq"
             )
 
+# phonon energy
+def get_ephon(self, ikind=None):
+    """
+       This function returns the value of the local energy components
+               
+       :type ikind: int
+       :param ikind: index of the component. It is
+        
+
+        * :code:`1`: ed_Eph: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
+        * :code:`2`: ed_Eph: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
+            c^{\\dagger}_{i \\sigma} c_{j \\sigma} \\, (b^{\\dagger} + b)`
+       
+       :return: the full phonon energy tensor has dimensions [2]. The single component
+        can be returned by specifying :code:`ikind`
+       :rtype: float **or** np.array(dtype=float)    
+    """
+
+    ed_get_ephon_wrap = self.library.ed_get_ephon
+    ed_get_ephon_wrap.argtypes = [
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
+    ]
+    ed_get_ephon_wrap.restype = None
+
+    ephon_vec = np.zeros(2, dtype=float, order="F")
+    ed_get_ephon_wrap(ephon_vec)
+    ephon_vec = np.ascontiguousarray(ephon_vec)
+
+    if ikind is not None:
+        return eimp_vec[ikind]
+    else:
+        return eimp_vec
 
 ########################
 #   SIGMA              #

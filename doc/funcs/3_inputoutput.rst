@@ -8,6 +8,8 @@ These functions pass to the userspace the observables and response functions cal
 .. autofunction:: edipack2py.global_env.get_docc
    
 .. autofunction:: edipack2py.global_env.get_eimp
+
+.. autofunction:: edipack2py.global_env.get_ephon
    
 .. autofunction:: edipack2py.global_env.get_mag 
 
@@ -20,6 +22,10 @@ These functions pass to the userspace the observables and response functions cal
 .. autofunction:: edipack2py.global_env.get_g0and
 
 .. autofunction:: edipack2py.global_env.get_delta
+
+.. autofunction:: edipack2py.global_env.get_dimp
+
+.. autofunction:: edipack2py.global_env.get_denmat
 
 .. autofunction:: edipack2py.global_env.get_chi
 
