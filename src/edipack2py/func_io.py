@@ -376,10 +376,10 @@ def get_eimp(self, ilat=None, ikind=None):
        :type ikind: int
        :param ikind: index of the component. It is
         
-        * :code:`1`: ed_Epot: the potential energy from interaction
-        * :code:`2`: ed_Eint: ed-Epot - ed_Ehartree
-        * :code:`3`: ed_Ehartree: Hartree part of interaction energy
-        * :code:`4`: ed_Eknot: on-site part of the kinetic term
+        * :code:`0`: ed_Epot: the potential energy from interaction
+        * :code:`1`: ed_Eint: ed-Epot - ed_Ehartree
+        * :code:`2`: ed_Ehartree: Hartree part of interaction energy
+        * :code:`3`: ed_Eknot: on-site part of the kinetic term
        
        :return: the full local energy tensor has dimensions [ :code:`Nlat` ,4]. Depending on \
         which keyword arguments are (or not) provided, this is sliced on the corresponding axis.
@@ -439,9 +439,9 @@ def get_phon(self, ikind=None):
     :param ikind: index of the component. It is
 
 
-     * :code:`1`: :math:`b^{\\dagger} b`
-     * :code:`2`: :math:`(b^{\\dagger} + b)/\\sqrt{2}`
-     * :code:`3`: :math:`(b^{\\dagger} + b)^{2}/2`
+     * :code:`0`: :math:`b^{\\dagger} b`
+     * :code:`1`: :math:`(b^{\\dagger} + b)/\\sqrt{2}`
+     * :code:`2`: :math:`(b^{\\dagger} + b)^{2}/2`
 
     :return: the full phonon energy tensor has dimensions [3]. The single component
      can be returned by specifying :code:`ikind`
@@ -473,8 +473,8 @@ def get_ephon(self, ikind=None):
        :param ikind: index of the component. It is
         
 
-        * :code:`1`: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
-        * :code:`2`: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
+        * :code:`0`: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
+        * :code:`1`: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
             c^{\\dagger}_{i \\sigma} c_{j \\sigma} \\, (b^{\\dagger} + b)`
        
        :return: the full phonon energy tensor has dimensions [2]. The single component
