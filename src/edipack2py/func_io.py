@@ -376,10 +376,10 @@ def get_eimp(self, ilat=None, ikind=None):
        :type ikind: int
        :param ikind: index of the component. It is
         
-        * :code:`1`: ed_Epot: the potential energy from interaction
-        * :code:`2`: ed_Eint: ed-Epot - ed_Ehartree
-        * :code:`3`: ed_Ehartree: Hartree part of interaction energy
-        * :code:`4`: ed_Eknot: on-site part of the kinetic term
+        * :code:`0`: ed_Epot: the potential energy from interaction
+        * :code:`1`: ed_Eint: ed-Epot - ed_Ehartree
+        * :code:`2`: ed_Ehartree: Hartree part of interaction energy
+        * :code:`3`: ed_Eknot: on-site part of the kinetic term
        
        :return: the full local energy tensor has dimensions [ :code:`Nlat` ,4]. Depending on \
         which keyword arguments are (or not) provided, this is sliced on the corresponding axis.
@@ -428,6 +428,74 @@ def get_eimp(self, ilat=None, ikind=None):
             raise RuntimeError(
                 "Can't use r-DMFT routines without installing EDIpack2ineq"
             )
+
+
+# phonon observables
+def get_phon(self, ikind=None):
+    """
+    This function returns the value of the phonon observables
+
+    :type ikind: int
+    :param ikind: index of the component. It is
+
+
+     * :code:`0`: :math:`b^{\\dagger} b`
+     * :code:`1`: :math:`(b^{\\dagger} + b)/\\sqrt{2}`
+     * :code:`2`: :math:`(b^{\\dagger} + b)^{2}/2`
+
+    :return: the full phonon energy tensor has dimensions [3]. The single component
+     can be returned by specifying :code:`ikind`
+    :rtype: float **or** np.array(dtype=float)
+    """
+
+    ed_get_phon_wrap = self.library.ed_get_phon
+    ed_get_phon_wrap.argtypes = [
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
+    ]
+    ed_get_phon_wrap.restype = None
+
+    phon_vec = np.zeros(3, dtype=float, order="F")
+    ed_get_phon_wrap(phon_vec)
+    phon_vec = np.ascontiguousarray(phon_vec)
+
+    if ikind is not None:
+        return phon_vec[ikind]
+    else:
+        return phon_vec
+
+
+# phonon energy
+def get_ephon(self, ikind=None):
+    """
+       This function returns the value of the phononic energy contributions
+               
+       :type ikind: int
+       :param ikind: index of the component. It is
+        
+
+        * :code:`0`: :math:`\\omega^{\\mathrm{PH}}_{0} b^{\\dagger} b`
+        * :code:`1`: :math:`\\sum_{\\sigma, i, j} (g^{\\mathrm{PH}})_{i\\, j} \\, \
+            c^{\\dagger}_{i \\sigma} c_{j \\sigma} \\, (b^{\\dagger} + b)`
+       
+       :return: the full phonon energy tensor has dimensions [2]. The single component
+        can be returned by specifying :code:`ikind`
+       :rtype: float **or** np.array(dtype=float)    
+    """
+
+    ed_get_ephon_wrap = self.library.ed_get_ephon
+    ed_get_ephon_wrap.argtypes = [
+        np.ctypeslib.ndpointer(dtype=float, ndim=1, flags="F_CONTIGUOUS")
+    ]
+    ed_get_ephon_wrap.restype = None
+
+    ephon_vec = np.zeros(2, dtype=float, order="F")
+    ed_get_ephon_wrap(ephon_vec)
+    ephon_vec = np.ascontiguousarray(ephon_vec)
+
+    if ikind is not None:
+        return ephon_vec[ikind]
+    else:
+        return ephon_vec
 
 
 ########################
@@ -1432,3 +1500,156 @@ def get_impurity_rdm(self, doprint=False):
     rdm = np.ascontiguousarray(rdm)
 
     return rdm
+
+
+#######################
+#   DIMP              #
+#######################
+
+
+def get_dimp(self, zeta=None, axis=None):
+    """
+    
+    This function returns the phononic Green's function
+   
+    :type zeta: complex **or** [complex] **or** np.array(dtype=complex)
+    :param zeta: user-defined array of frequencies in the whole complex plane. \
+     If none is provided, according to :code:`axis` the Matsubara or real axis is chosen
+  
+    :type axis: str
+    :param axis: the axis on which to calculate :math:`\\chi`. Possible values \
+    :code:`matsubara` ( :code:`m`), :code:`real` ( :code:`r`)
+   
+    :return: the phonon Green's function, of the same shape as :code:`zeta`
+    :rtype: np.array(dtype=complex) 
+    
+    """
+    ed_get_dimp = self.library.get_dimp_site_n1
+    ed_get_dimp.argtypes = [
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # dimp
+        ct.c_int,  # axis
+        np.ctypeslib.ndpointer(dtype=complex, ndim=1, flags="F_CONTIGUOUS"),  # zeta
+        ct.c_int,  # dim_zeta
+        ct.c_int,  # zetaflag
+    ]
+    ed_get_dimp.restype = None
+
+    if self.Nineq != 0:
+        raise RuntimeError("get_dimp not implemented for inequivalent sites yet.")
+
+    aux_Lmats = ct.c_int.in_dll(self.library, "Lmats").value
+    aux_Lreal = ct.c_int.in_dll(self.library, "Lreal").value
+    
+    zetaflag = 1
+    
+    if axis is None:
+        raise ValueError("Axis is required")
+    else:
+        if zeta is None:
+            if axis == "m":
+                zeta = np.array([0.0], dtype=complex)
+                zetaflag = 0
+                axisflag = 0
+                nfreq = aux_Lmats
+            if axis == "r":
+                zeta = np.array([0.0], dtype=complex)
+                zetaflag = 0
+                axisflag = 1
+                nfreq = aux_Lreal
+        else:
+            if axis == "m":
+                axisflag = 0
+            elif axis == "r":
+                axisflag = 1
+            else:
+                raise ValueError("axis can only be 'm' or 'r'")
+            nfreq = np.shape(zeta)[0]
+
+    zeta = np.asfortranarray(zeta)
+
+    dimp = np.zeros([nfreq], dtype=complex, order="F")
+    ed_get_dimp(dimp, axisflag, zeta, nfreq, zetaflag)
+
+    dimp = np.ascontiguousarray(dimp)
+
+    return dimp
+
+
+#######################
+#   1BDM              #
+#######################
+
+
+def get_denmat(self, ishape=4, doprint=False):
+    """
+
+    This function returns the 1-body density matrix
+
+    :type ishape: int
+    :param ishape: the rank of the density matrix array. Possible values :code:`2,4` .
+
+    :type doprint: bool
+    :param doprint: flag to print the density matrix.
+
+    :return: the 1-body density matrix of shape :code:`(Nspin,Nspin,Ns,Ns)` or
+     :code:`(Nspin Ns,Nspin Ns)` where :code:`Ns` is the total number of levels per spin.
+     If the calculation is superconductive, :code:`Nspin` is always 2.
+    :rtype: np.array(dtype=complex)
+
+    """
+
+    ed_get_denmat_n2 = self.library.ed_get_denmat_n2
+    ed_get_denmat_n2.argtypes = [
+        np.ctypeslib.ndpointer(dtype=complex, ndim=2, flags="F_CONTIGUOUS"),  # denmat
+        np.ctypeslib.ndpointer(
+            dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
+        ),  # dimdenmat
+        ct.c_int,  # doprint
+    ]
+    ed_get_denmat_n2.restype = None
+
+    ed_get_denmat_n4 = self.library.ed_get_denmat_n4
+    ed_get_denmat_n4.argtypes = [
+        np.ctypeslib.ndpointer(dtype=complex, ndim=4, flags="F_CONTIGUOUS"),  # denmat
+        np.ctypeslib.ndpointer(
+            dtype=np.int64, ndim=1, flags="F_CONTIGUOUS"
+        ),  # dimdenmat
+        ct.c_int,  # doprint
+    ]
+    ed_get_denmat_n4.restype = None
+
+    doprint = int(doprint)
+
+    if self.Nineq != 0:
+        raise RuntimeError("get_denmat not implemented for inequivalent sites yet.")
+
+    aux_norb = ct.c_int.in_dll(self.library, "Norb").value
+    aux_nspin = ct.c_int.in_dll(self.library, "Nspin").value
+    aux_nbath = ct.c_int.in_dll(self.library, "Nbath").value
+
+    if self.get_ed_mode() == 2:
+        aux_nspin = 2
+
+    bath_type = self.get_bath_type()
+
+    if bath_type in [1, 3, 4]:
+        Ns = (aux_nbath + 1) * aux_norb
+    elif bath_type == 2:
+        Ns = aux_nbath + aux_norb
+    else:
+        raise ValueError("get_denmat: wrong bath type")
+
+    if ishape == 4:
+        dimdenmat = np.array([aux_nspin, aux_nspin, Ns, Ns], dtype=int, order="F")
+        denmat = np.zeros((aux_nspin, aux_nspin, Ns, Ns), dtype=complex, order="F")
+        ed_get_denmat_n4(denmat, dimdenmat, doprint)
+    elif ishape == 2:
+        dimdenmat = np.array([aux_nspin * Ns, aux_nspin * Ns], dtype=int, order="F")
+        denmat = np.zeros((aux_nspin * Ns, aux_nspin * Ns), dtype=complex, order="F")
+        ed_get_denmat_n2(denmat, dimdenmat, doprint)
+    else:
+        raise ValueError("get_denmat: wrong ishape")
+
+    denmat = np.ascontiguousarray(denmat)
+
+    return denmat

@@ -9,5 +9,7 @@ Auxiliary procedures
 
 .. autofunction:: edipack2py.global_env.search_variable
 
+.. autofunction:: edipack2py.global_env.set_phonon_coefficients
+
 
 

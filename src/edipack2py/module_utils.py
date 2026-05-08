@@ -6,7 +6,6 @@ import types
 import pkgconfig
 import warnings
 
-
 #############################################
 # Function that finds and loads the library #
 #############################################
@@ -135,9 +134,16 @@ class dynamic_library_interface:
         setattr(self.__class__, dynamic_name, property(getter, setter))
 
     # add method to interface class
-    def add_method(self, func, name=None):
-        if name is None:
-            name = func.__name__
+    def add_method(self, mod, name):
+        # Fail early if symbol missing
+        if self.library is None:
+            warnings.warn("EDIpack library is not present.")
+            return
+        try:
+            func = getattr(mod, name)
+        except AttributeError:
+            warnings.warn(f"Function '{name}' binding not found in the DLL.")
+            return
         # Bind the function to this instance
         bound_method = types.MethodType(func, self)
         setattr(self, name, bound_method)

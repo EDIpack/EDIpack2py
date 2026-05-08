@@ -26,13 +26,13 @@ import sphinxfortran_ng
 # -- Project information -----------------------------------------------------
 
 project = u'EDIpack2py'
-copyright = u'2025, Lorenzo Crippa and Adriano Amaricci'
+copyright = u'2026, Lorenzo Crippa and Adriano Amaricci'
 author = u'Lorenzo Crippa and Adriano Amaricci'
 
 # The short X.Y version
-version = u''
+version = u'6.0'
 # The full version, including alpha/beta/rc tags
-release = u'5.0.0'
+release = u'6.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -118,6 +118,11 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# this makes the current project version available as var in every rst file
+rst_epilog = """
+.. |PROJECT_VERSION| replace:: {version}
+""".format(version=version)
+
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -125,6 +130,7 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_logo = '_static/pictures/edipack_monochrome_banner.svg'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -134,6 +140,7 @@ html_theme_options = {
   'collapse_navigation': False,
   'prev_next_buttons_location': 'both',
   'navigation_depth': 4,
+  'logo_only': True,
 }
 
 # html_theme = "sphinxawesome_theme"
