@@ -1539,7 +1539,9 @@ def get_dimp(self, zeta=None, axis=None):
 
     aux_Lmats = ct.c_int.in_dll(self.library, "Lmats").value
     aux_Lreal = ct.c_int.in_dll(self.library, "Lreal").value
-
+    
+    zetaflag = 1
+    
     if axis is None:
         raise ValueError("Axis is required")
     else:
