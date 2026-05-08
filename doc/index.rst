@@ -6,7 +6,7 @@ EDIpack2py
       .. image:: _static/pictures/logo_github.png
          :width: 75%
          :align: center
-         :target: https://github.com/EDIpack/EDIpack
+         :target: https://github.com/EDIpack/EDIpack2py
 
 **EDIpack2py** is a Python API for the `EDIpack <https://edipack.github.io/EDIpack>`_ Quantum Impurity Solver.
 It is available as a python module, installable through :code:`pip`, as well as an Anaconda package bundled with the
