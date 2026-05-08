@@ -138,12 +138,10 @@ class dynamic_library_interface:
         # Fail early if symbol missing
         if self.library is None:
             warnings.warn("EDIpack library is not present.")
-            return
         try:
             func = getattr(mod, name)
         except AttributeError:
             warnings.warn(f"Function '{name}' binding not found in the DLL.")
-            return
         # Bind the function to this instance
         bound_method = types.MethodType(func, self)
         setattr(self, name, bound_method)
