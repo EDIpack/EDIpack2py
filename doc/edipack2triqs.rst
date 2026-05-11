@@ -8,7 +8,6 @@ is a  compatibility layer between EDIpack and
 (Toolbox for Research on Interacting Quantum Systems) developed by 
 Igor Krivenko. It features full compatibility for the single-site 
 DMFT routines in the normal, superconductive and nonSU(2) variants.
-
 Full documentation and examples are available
 `here. <https://edipack.github.io/edipack2triqs/>`_
    
