@@ -3,18 +3,18 @@ Basic usage
 
 Module import
 --------------
-Upon import, the `edipack2py` python module will try to load the dynamic library :data:`libedipack_cbindings.so` , provided by `EDIpack` and containing the c-fortran bindings. The module will try the following routes, in order of priority:
+Upon import, the :code:`edipack2py` python module will try to load the dynamic library :data:`libedipack_cbindings.so` , provided by **EDIpack** and containing the C-Fortran bindings. The module will try the following routes, in order of priority:
 
 * As a first choice, the user can override the location of the library by exporting an environment variable called :code:`EDIPACK_PATH` .
-* By default, the module detects the presence of the Fortran libraries via `pkg-config`. If `EDIpack` was loaded as an environment module, the import will automatically work. 
-* The `EDIpack` library provides a `.pc` , located by default in the :code:`~/.pkgconfig.d` directory. If the environment variable :code:`PKG_CONFIG_PATH` is set to include the location of the `.pc` file, loading the library via `pkg-config` will work as well.
+* By default, the module detects the presence of the Fortran libraries via :code:`pkg-config`. If **EDIpack** was loaded as an environment module, the import will automatically work. 
+* The **EDIpack** library provides a `.pc` , located by default in the :code:`~/.pkgconfig.d` directory. If the environment variable :code:`PKG_CONFIG_PATH` is set to include the location of the `.pc` file, loading the library via `pkg-config` will work as well.
 * As a last resort :code:`LD_LIBRARY_PATH` and :code:`DYLD_LIBRARY_PATH` are scanned. 
 
 If none of the previous attempts succeeds, the module will not not load correctly and an error message will be printed. 
 
-The `EDIpack <https://www.github.com/EDIpack/EDIpack/>`_ library offers, as an independent module, an interface for real-space DMFT functions (see relevant `documentation <https://edipack.github.io/EDIpack/>`_). `EDIpack2py` is in principle capable of solving real-space DMFT problems, provided the Fortran libraries were compiled with the real-space DMFT support enabled. If that is not the case, the python module will disable the real-space DMFT functions, and invoking them will result in a :code:`RuntimeError`. The user can check the availability of the real-space DMFT interface by printing the value of :code:`edipack2py.global_env.has_ineq`.
+The `EDIpack <https://www.github.com/EDIpack/EDIpack/>`_ library offers, as an independent module, an interface for real-space DMFT functions (see relevant `documentation <https://edipack.github.io/EDIpack/>`_). **EDIpack2py** is in principle capable of solving real-space DMFT problems, provided the Fortran libraries were compiled with the real-space DMFT support enabled. If that is not the case, the python module will disable the real-space DMFT functions, and invoking them will result in a :code:`RuntimeError`. The user can check the availability of the real-space DMFT interface by printing the value of :code:`edipack2py.global_env.has_ineq`.
 
-The `edipack2py` module consists mainly of a class called :code:`global_env`. The global variables and the functions of the `EDIpack` library that are exposed to the user are properties and methods of this class. The class needs to be imported at the beginning of the python script, along with other useful modules. `Numpy <https://numpy.org/>`_ is necessary, while `mpi4py <https://mpi4py.readthedocs.io/en/stable/>`_ is strongly recommended.
+The :code:`edipack2py` module consists mainly of a class called :code:`global_env`. The global variables and the functions of the **EDIpack** library that are exposed to the user are properties and methods of this class. The class needs to be imported at the beginning of the python script, along with other useful modules. `Numpy <https://numpy.org/>`_ is necessary, while `mpi4py <https://mpi4py.readthedocs.io/en/stable/>`_ is strongly recommended.
 
 .. code-block:: python
 
@@ -29,7 +29,7 @@ The `edipack2py` module consists mainly of a class called :code:`global_env`. Th
 Minimal DMFT loop
 -------------------
 
-An example driver is provided in the :code:`examples` folder of the `EDIpack2py` repository. The basic steps to follow to run a single DMFT loop are the following:
+The basic steps to follow to run a single DMFT loop are the following:
 
 Read the input file
 
@@ -95,3 +95,4 @@ and, finally, the solution environment can be cleaned up via
     ed.finalize_solver()
     
 some or all of the steps above can be inserted in the DMFT convergence loop.
+Complete examples are available in the :ref:`examples <examples>` page.
