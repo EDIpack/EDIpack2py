@@ -1035,8 +1035,7 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
                
-       :raise ValueError: If :code:`zeta` is not completely real or completely \
-        imaginary
+       :raise ValueError: If :code:`zeta` is zero
        :raise ValueError: If :code:`ishape` is not 3 or 5.
                
        :return: An array of complex that contains :math:`G^{And}_{0}(z)` function \
@@ -1173,8 +1172,7 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
                
-       :raise ValueError: If :code:`zeta` is not completely real or completely \
-        imaginary
+       :raise ValueError: If :code:`zeta` is zero
        :raise ValueError: If :code:`ishape` is not 3 or 5.
                
        :return: An array of complex that contains :math:`\\Delta(z)` along the \
