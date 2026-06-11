@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage examples &mdash; EDIpack2py 6.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=aface3f9" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=12958129"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TRIQS compatibility layer" href="edipack2triqs.html" />
+    <link rel="prev" title="Interaction matrix parsing" href="funcs/5_interaction_matrix_parsing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/edipack_monochrome_banner.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python module</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pyinstallation.html">EDIpack2py Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#install-with-pip">Install with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyinstallation.html#install-from-source">Install from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basicusage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basicusage.html#module-import">Module import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basicusage.html#minimal-dmft-loop">Minimal DMFT loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="globvars.html">Global variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.beta"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.beta</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.chidens_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chidens_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.chiexct_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chiexct_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.chipair_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chipair_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.chispin_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.chispin_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jh"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.dmft_error"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.dmft_error</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.ed_total_ud"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_total_ud</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.ed_twin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.ed_twin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.eps"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.eps</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jx"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Jp"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Jp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lmats"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lmats</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.LOGfile"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.LOGfile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lpos"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lpos</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Lreal"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Lreal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Ltau"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ltau</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nbath"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nbath</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nloop"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nloop</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Norb"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Norb</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nph"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nph</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.nread"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.nread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nspin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nspin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Nsuccess"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Nsuccess</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.pair_field"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.pair_field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.rdm_flag"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.rdm_flag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.sb_field"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.sb_field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Uloc"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Uloc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.Ust"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.Ust</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.wini"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wini</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.wfin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.wfin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmin"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmax"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmax</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="globvars.html#edipack2py.global_env.xmu"><code class="docutils literal notranslate"><span class="pre">edipack2py.global_env.xmu</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="funcs/0_readinput.html">Input file manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/0_readinput.html#edipack2py.global_env.read_input"><code class="docutils literal notranslate"><span class="pre">read_input()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/1_solver.html">Impurity Problem Initialization, Solution and Finalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.finalize_solver"><code class="docutils literal notranslate"><span class="pre">finalize_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.init_solver"><code class="docutils literal notranslate"><span class="pre">init_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.set_hloc"><code class="docutils literal notranslate"><span class="pre">set_hloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/1_solver.html#edipack2py.global_env.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/2_bath.html">Bath Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.bath_inspect"><code class="docutils literal notranslate"><span class="pre">bath_inspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.break_symmetry_bath"><code class="docutils literal notranslate"><span class="pre">break_symmetry_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.chi2_fitgf"><code class="docutils literal notranslate"><span class="pre">chi2_fitgf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.get_bath_dimension"><code class="docutils literal notranslate"><span class="pre">get_bath_dimension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.orb_equality_bath"><code class="docutils literal notranslate"><span class="pre">orb_equality_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.orb_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">orb_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.ph_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">ph_symmetrize_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.save_array_as_bath"><code class="docutils literal notranslate"><span class="pre">save_array_as_bath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.set_hgeneral"><code class="docutils literal notranslate"><span class="pre">set_hgeneral()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.set_hreplica"><code class="docutils literal notranslate"><span class="pre">set_hreplica()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/2_bath.html#edipack2py.global_env.spin_symmetrize_bath"><code class="docutils literal notranslate"><span class="pre">spin_symmetrize_bath()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/3_inputoutput.html">Input / Output Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_chi"><code class="docutils literal notranslate"><span class="pre">get_chi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_denmat"><code class="docutils literal notranslate"><span class="pre">get_denmat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_dens"><code class="docutils literal notranslate"><span class="pre">get_dens()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_delta"><code class="docutils literal notranslate"><span class="pre">get_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_dimp"><code class="docutils literal notranslate"><span class="pre">get_dimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_docc"><code class="docutils literal notranslate"><span class="pre">get_docc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_eimp"><code class="docutils literal notranslate"><span class="pre">get_eimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_ephon"><code class="docutils literal notranslate"><span class="pre">get_ephon()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_g0and"><code class="docutils literal notranslate"><span class="pre">get_g0and()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_gimp"><code class="docutils literal notranslate"><span class="pre">get_gimp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_mag"><code class="docutils literal notranslate"><span class="pre">get_mag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_phi"><code class="docutils literal notranslate"><span class="pre">get_phi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_phon"><code class="docutils literal notranslate"><span class="pre">get_phon()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_impurity_rdm"><code class="docutils literal notranslate"><span class="pre">get_impurity_rdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/3_inputoutput.html#edipack2py.global_env.get_sigma"><code class="docutils literal notranslate"><span class="pre">get_sigma()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/4_auxiliary.html">Auxiliary procedures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.check_convergence"><code class="docutils literal notranslate"><span class="pre">check_convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.get_bath_type"><code class="docutils literal notranslate"><span class="pre">get_bath_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.get_ed_mode"><code class="docutils literal notranslate"><span class="pre">get_ed_mode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.search_variable"><code class="docutils literal notranslate"><span class="pre">search_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/4_auxiliary.html#edipack2py.global_env.set_phonon_coefficients"><code class="docutils literal notranslate"><span class="pre">set_phonon_coefficients()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html">Interaction matrix parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.add_twobody_operator"><code class="docutils literal notranslate"><span class="pre">add_twobody_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcs/5_interaction_matrix_parsing.html#edipack2py.global_env.reset_umatrix"><code class="docutils literal notranslate"><span class="pre">reset_umatrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hubbard-model-on-the-bethe-lattice">Hubbard model on the Bethe lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orbital-attractive-hubbard-model-on-the-square-lattice">2-orbital attractive Hubbard model on the square lattice</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="edipack2triqs.html">TRIQS compatibility layer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">External Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack2py">EDIpack2py on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack">EDIpack on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/edipack/EDIpack2triqs">EDIpack2triqs on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SciFortran/SciFortran">SciFortran on GitHub</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EDIpack2py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="funcs/5_interaction_matrix_parsing.html" class="btn btn-neutral float-left" title="Interaction matrix parsing" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edipack2triqs.html" class="btn btn-neutral float-right" title="TRIQS compatibility layer" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-examples">
+<span id="examples"></span><h1>Usage examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h1>
+<section id="hubbard-model-on-the-bethe-lattice">
+<h2>Hubbard model on the Bethe lattice<a class="headerlink" href="#hubbard-model-on-the-bethe-lattice" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/hm_bethe/inputED.conf">Input file</a> and <a class="reference external" href="https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/hm_bethe/hamiltonian.restart">converged bath parameters</a> are available in the <strong>EDIpack2py</strong> repository</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># INIT MPI</span>
+<span class="linenos"> 2</span><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="linenos"> 3</span><span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am process&quot;</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">())</span>
+<span class="linenos"> 5</span><span class="n">master</span> <span class="o">=</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="k">def</span> <span class="nf">dens_bethe</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="linenos"> 9</span>    <span class="n">root</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">d</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.0</span><span class="n">j</span>
+<span class="linenos">10</span>    <span class="n">root</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">dens_bethe</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">d</span><span class="p">))</span> <span class="o">*</span> <span class="n">root</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="n">dens_bethe</span><span class="o">.</span><span class="n">real</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># READ ED INPUT:</span>
+<span class="linenos">16</span><span class="n">ed</span><span class="o">.</span><span class="n">read_input</span><span class="p">(</span><span class="s2">&quot;inputED.conf&quot;</span><span class="p">)</span>
+<span class="linenos">17</span><span class="k">if</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">18</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This test code is for Nspin=1 + Norb=1.&quot;</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">20</span>    <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">21</span><span class="n">Le</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos">22</span><span class="n">wmixing</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="linenos">23</span><span class="n">wband</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1"># BUILD Density of States:</span>
+<span class="linenos">26</span><span class="n">Eband</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">wband</span><span class="p">,</span> <span class="n">wband</span><span class="p">,</span> <span class="n">Le</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">27</span><span class="n">Dband</span> <span class="o">=</span> <span class="n">dens_bethe</span><span class="p">(</span><span class="n">Eband</span><span class="p">,</span> <span class="n">wband</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="c1"># BUILD frequency array:</span>
+<span class="linenos">30</span><span class="n">wm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">ed</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Lmats</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">31</span><span class="n">wr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">wini</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">wfin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Lreal</span><span class="p">)</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="c1"># Allocate minimal required arrays:</span>
+<span class="linenos">35</span><span class="c1"># ALL functions must have shape [Nspin,Nspin,Norb,Norb(,L)]:</span>
+<span class="linenos">36</span><span class="n">Delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Lmats</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;complex&quot;</span><span class="p">)</span>
+<span class="linenos">37</span><span class="n">Hloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;complex&quot;</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="c1"># SETUP SOLVER</span>
+<span class="linenos">41</span><span class="n">ed</span><span class="o">.</span><span class="n">set_hloc</span><span class="p">(</span><span class="n">Hloc</span><span class="p">)</span>
+<span class="linenos">42</span><span class="n">Nb</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_bath_dimension</span><span class="p">()</span>
+<span class="linenos">43</span><span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">init_solver</span><span class="p">()</span>
+<span class="linenos">44</span><span class="n">bath_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="c1"># DMFT CYCLE</span>
+<span class="linenos">47</span><span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">48</span><span class="n">iloop</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">49</span><span class="k">while</span> <span class="ow">not</span> <span class="n">converged</span> <span class="ow">and</span> <span class="n">iloop</span> <span class="o">&lt;</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nloop</span><span class="p">:</span>
+<span class="linenos">50</span>    <span class="n">iloop</span> <span class="o">=</span> <span class="n">iloop</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">51</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DMFT-loop:&quot;</span><span class="p">,</span> <span class="n">iloop</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nloop</span><span class="p">)</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>    <span class="c1"># Solve the EFFECTIVE IMPURITY PROBLEM (first w/ a guess for the bath)</span>
+<span class="linenos">54</span>    <span class="n">ed</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span>    <span class="c1"># Get Self-energies</span>
+<span class="linenos">57</span>    <span class="n">Smats</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_sigma</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="linenos">58</span>    <span class="n">Sreal</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_sigma</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="linenos">59</span>    <span class="n">Gimp_mats</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_gimp</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="linenos">60</span>    <span class="n">Gimp_real</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_gimp</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="linenos">61</span>    <span class="n">Gmats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Smats</span><span class="p">)</span>
+<span class="linenos">62</span>    <span class="n">Greal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Sreal</span><span class="p">)</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span>    <span class="n">zeta</span> <span class="o">=</span> <span class="n">wm</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">-</span> <span class="n">Smats</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="linenos">65</span>    <span class="n">Gmats</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Dband</span> <span class="o">/</span> <span class="p">(</span><span class="n">zeta</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">Eband</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">de</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span>    <span class="n">zeta</span> <span class="o">=</span> <span class="n">wr</span> <span class="o">+</span> <span class="n">ed</span><span class="o">.</span><span class="n">eps</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">-</span> <span class="n">Sreal</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="linenos">68</span>    <span class="n">Greal</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Dband</span> <span class="o">/</span> <span class="p">(</span><span class="n">zeta</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">Eband</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">de</span>
+<span class="linenos">69</span>
+<span class="linenos">70</span>    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">71</span>        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span>
+<span class="linenos">72</span>            <span class="s2">&quot;Gloc_iw.dat&quot;</span><span class="p">,</span>
+<span class="linenos">73</span>            <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="n">wm</span><span class="p">,</span> <span class="n">Gmats</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">Gmats</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">real</span><span class="p">]),</span>
+<span class="linenos">74</span>        <span class="p">)</span>
+<span class="linenos">75</span>        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span>
+<span class="linenos">76</span>            <span class="s2">&quot;Gloc_realw.dat&quot;</span><span class="p">,</span>
+<span class="linenos">77</span>            <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="n">wr</span><span class="p">,</span> <span class="n">Greal</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">Greal</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">real</span><span class="p">]),</span>
+<span class="linenos">78</span>        <span class="p">)</span>
+<span class="linenos">79</span>
+<span class="linenos">80</span>    <span class="c1"># Get the Delta function and FIT:</span>
+<span class="linenos">81</span>    <span class="n">Delta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">wband</span> <span class="o">*</span> <span class="n">Gmats</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="linenos">82</span>    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">83</span>        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span>
+<span class="linenos">84</span>            <span class="s2">&quot;Delta_iw.dat&quot;</span><span class="p">,</span>
+<span class="linenos">85</span>            <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="n">wm</span><span class="p">,</span> <span class="n">Delta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">Delta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">real</span><span class="p">]),</span>
+<span class="linenos">86</span>        <span class="p">)</span>
+<span class="linenos">87</span>    <span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">chi2_fitgf</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span> <span class="n">bath</span><span class="p">,</span> <span class="n">ispin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">iorb</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">88</span>
+<span class="linenos">89</span>    <span class="k">if</span> <span class="n">iloop</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">90</span>        <span class="n">bath</span> <span class="o">=</span> <span class="n">wmixing</span> <span class="o">*</span> <span class="n">bath</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">wmixing</span><span class="p">)</span> <span class="o">*</span> <span class="n">bath_prev</span>
+<span class="linenos">91</span>    <span class="n">bath_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">92</span>
+<span class="linenos">93</span>    <span class="n">err</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">check_convergence</span><span class="p">(</span><span class="n">Delta</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">dmft_error</span><span class="p">)</span>
+<span class="linenos">94</span>
+<span class="linenos">95</span><span class="n">ed</span><span class="o">.</span><span class="n">finalize_solver</span><span class="p">()</span>
+<span class="linenos">96</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="orbital-attractive-hubbard-model-on-the-square-lattice">
+<h2>2-orbital attractive Hubbard model on the square lattice<a class="headerlink" href="#orbital-attractive-hubbard-model-on-the-square-lattice" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://raw.githubusercontent.com/EDIpack/EDIpack2py/refs/heads/main/examples/ahm_square_lattice/inputAHM.conf">Input file</a> is available in the <strong>EDIpack2py</strong> repository</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># INIT MPI</span>
+<span class="linenos">  2</span><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="linenos">  3</span><span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="linenos">  4</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am process&quot;</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">())</span>
+<span class="linenos">  5</span><span class="n">master</span> <span class="o">=</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="c1"># Auxiliary functions</span>
+<span class="linenos">  9</span><span class="k">def</span> <span class="nf">superconductive_zeta</span><span class="p">(</span><span class="n">warray</span><span class="p">,</span> <span class="n">xmu</span><span class="p">,</span> <span class="n">Sigma_all</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<span class="linenos"> 10</span>    <span class="n">Ntot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Sigma_all</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos"> 11</span>    <span class="n">Lfreq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">warray</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 12</span>    <span class="n">zi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+<span class="linenos"> 13</span>        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Lfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span>
+<span class="linenos"> 14</span>    <span class="p">)</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span>    <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span>
+<span class="linenos"> 17</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">warray</span> <span class="o">+</span> <span class="n">xmu</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ntot</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">Sigma_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 18</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Sigma_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 19</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Sigma_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 20</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">warray</span> <span class="o">-</span> <span class="n">xmu</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ntot</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span>
+<span class="linenos"> 21</span>            <span class="n">Sigma_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 22</span>        <span class="p">)</span>
+<span class="linenos"> 23</span>    <span class="k">elif</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;r&quot;</span><span class="p">:</span>
+<span class="linenos"> 24</span>        <span class="n">warray_bar</span> <span class="o">=</span> <span class="n">warray</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="linenos"> 25</span>        <span class="n">Sigma_bar</span> <span class="o">=</span> <span class="n">Sigma_all</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 26</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">warray</span> <span class="o">+</span> <span class="n">xmu</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ntot</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">Sigma_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 27</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Sigma_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 28</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Sigma_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 29</span>        <span class="n">zi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">warray_bar</span> <span class="o">+</span> <span class="n">xmu</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ntot</span><span class="p">)[</span>
+<span class="linenos"> 30</span>            <span class="o">...</span><span class="p">,</span> <span class="kc">None</span>
+<span class="linenos"> 31</span>        <span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">Sigma_bar</span><span class="p">)</span>
+<span class="linenos"> 32</span>    <span class="k">return</span> <span class="n">zi</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="k">def</span> <span class="nf">get_gloc</span><span class="p">(</span><span class="n">warray</span><span class="p">,</span> <span class="n">xmu</span><span class="p">,</span> <span class="n">Hk</span><span class="p">,</span> <span class="n">Sigma_all</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 37</span><span class="sd">    Z has dimension  [Nambu,Nambu,Nso,Nso,Nfreq]</span>
+<span class="linenos"> 38</span><span class="sd">    Hk has dimension [Nnambu,Nk,Nso,Nso]</span>
+<span class="linenos"> 39</span><span class="sd">    Gk has dimension [Nk,Nnambu,Nso,Nso]</span>
+<span class="linenos"> 40</span><span class="sd">    Gmatrix has dimension [Nnambu*Ntot,Nnambu*Ntot,Nfreq]</span>
+<span class="linenos"> 41</span><span class="sd">    Returns an object of dimension [2,Ntot,Nfreq]</span>
+<span class="linenos"> 42</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 45</span>        <span class="kn">import</span> <span class="nn">mpi4py</span>
+<span class="linenos"> 46</span>        <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span>        <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="linenos"> 49</span>        <span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="linenos"> 50</span>        <span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+<span class="linenos"> 51</span>        <span class="n">mpiflag</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 52</span>    <span class="k">except</span><span class="p">:</span>
+<span class="linenos"> 53</span>        <span class="n">mpiflag</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 54</span>        <span class="n">rank</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 55</span>        <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span>    <span class="n">master</span> <span class="o">=</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span>    <span class="k">if</span> <span class="n">master</span><span class="p">:</span>
+<span class="linenos"> 60</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating local G axis &quot;</span> <span class="o">+</span> <span class="n">axis</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span>    <span class="n">Z</span> <span class="o">=</span> <span class="n">superconductive_zeta</span><span class="p">(</span><span class="n">warray</span><span class="p">,</span> <span class="n">xmu</span><span class="p">,</span> <span class="n">Sigma_all</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="linenos"> 63</span>    <span class="n">Ntot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Sigma_all</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos"> 64</span>    <span class="n">Nfreq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Z</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 65</span>    <span class="n">Nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Hk</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span>    <span class="k">if</span> <span class="n">Nk</span> <span class="o">&gt;=</span> <span class="n">Nfreq</span><span class="p">:</span>
+<span class="linenos"> 68</span>        <span class="n">base</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Nk</span> <span class="o">//</span> <span class="n">size</span><span class="p">)</span>
+<span class="linenos"> 69</span>        <span class="n">leftover</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Nk</span> <span class="o">%</span> <span class="n">size</span><span class="p">)</span>
+<span class="linenos"> 70</span>        <span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">base</span>
+<span class="linenos"> 71</span>        <span class="n">chunks</span><span class="p">[:</span><span class="n">leftover</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos"> 72</span>        <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="linenos"> 73</span>        <span class="n">offsets</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">chunks</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 74</span>        <span class="n">ilow</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+<span class="linenos"> 75</span>        <span class="n">ihigh</span> <span class="o">=</span> <span class="n">ilow</span> <span class="o">+</span> <span class="n">chunks</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+<span class="linenos"> 76</span>        <span class="c1"># print(rank,ilow,ihigh,chunks[rank])</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">chunks</span><span class="p">[</span><span class="n">rank</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Nfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">Hk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="linenos"> 81</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos"> 82</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos"> 83</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos"> 84</span>            <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">Hk</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="linenos"> 85</span>        <span class="p">)</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">Gtmp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 88</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">)</span>
+<span class="linenos"> 89</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">Gtmp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 90</span>        <span class="k">if</span> <span class="n">mpiflag</span><span class="p">:</span>
+<span class="linenos"> 91</span>            <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nk</span><span class="p">)</span>
+<span class="linenos"> 92</span>            <span class="n">Gloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">)</span>
+<span class="linenos"> 93</span>            <span class="n">comm</span><span class="o">.</span><span class="n">Allreduce</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">Gloc</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">MPI</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+<span class="linenos"> 94</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 95</span>            <span class="n">Gloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nk</span>
+<span class="linenos"> 96</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 97</span>        <span class="n">base</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Nfreq</span> <span class="o">//</span> <span class="n">size</span><span class="p">)</span>
+<span class="linenos"> 98</span>        <span class="n">leftover</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Nfreq</span> <span class="o">%</span> <span class="n">size</span><span class="p">)</span>
+<span class="linenos"> 99</span>        <span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">base</span>
+<span class="linenos">100</span>        <span class="n">chunks</span><span class="p">[:</span><span class="n">leftover</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">101</span>        <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="linenos">102</span>        <span class="n">offsets</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">chunks</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">103</span>        <span class="n">ilow</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+<span class="linenos">104</span>        <span class="n">ihigh</span> <span class="o">=</span> <span class="n">ilow</span> <span class="o">+</span> <span class="n">chunks</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+<span class="linenos">105</span>        <span class="c1"># print(rank,ilow,ihigh,chunks[rank])</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Nfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">108</span>        <span class="n">Gloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Nfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">111</span>            <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">-</span> <span class="n">Hk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="linenos">112</span>        <span class="p">)</span>
+<span class="linenos">113</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span>
+<span class="linenos">114</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span>
+<span class="linenos">115</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">116</span>            <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">]</span> <span class="o">-</span> <span class="n">Hk</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="linenos">117</span>        <span class="p">)</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">Gtmp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">120</span>        <span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">[:,</span> <span class="n">ilow</span><span class="p">:</span><span class="n">ihigh</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+<span class="linenos">121</span>        <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">Gtmp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">122</span>
+<span class="linenos">123</span>        <span class="k">if</span> <span class="n">mpiflag</span><span class="p">:</span>
+<span class="linenos">124</span>            <span class="n">Gtmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nk</span><span class="p">)</span>
+<span class="linenos">125</span>            <span class="n">comm</span><span class="o">.</span><span class="n">Allreduce</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">Gloc</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">MPI</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+<span class="linenos">126</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">127</span>            <span class="n">Gloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Gtmp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nk</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">Gloc</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Gloc</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="k">def</span> <span class="nf">get_weiss_field</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">):</span>
+<span class="linenos">133</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">134</span><span class="sd">    complex(8),dimension(2,Ntot,Ntot,Nfreq)              :: G</span>
+<span class="linenos">135</span><span class="sd">    complex(8),dimension(2,Ntot,Ntot,Nfreq)              :: Sigma</span>
+<span class="linenos">136</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">137</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">138</span>        <span class="kn">import</span> <span class="nn">mpi4py</span>
+<span class="linenos">139</span>        <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span>        <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="linenos">142</span>        <span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="linenos">143</span>        <span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+<span class="linenos">144</span>        <span class="n">mpiflag</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">145</span>    <span class="k">except</span><span class="p">:</span>
+<span class="linenos">146</span>        <span class="n">mpiflag</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">147</span>        <span class="n">rank</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">148</span>        <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span>    <span class="n">master</span> <span class="o">=</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span>    <span class="k">if</span> <span class="n">master</span><span class="p">:</span>
+<span class="linenos">153</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating Weiss Field&quot;</span><span class="p">)</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span>    <span class="n">Ntot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">156</span>    <span class="n">Nfreq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">157</span>
+<span class="linenos">158</span>    <span class="n">Gnambu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Nfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">159</span>    <span class="n">Snambu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ntot</span><span class="p">,</span> <span class="n">Nfreq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span>    <span class="n">Snambu</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">162</span>    <span class="n">Snambu</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">163</span>    <span class="n">Snambu</span><span class="p">[</span><span class="n">Ntot</span><span class="p">:,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">164</span>    <span class="n">Snambu</span><span class="p">[</span><span class="n">Ntot</span><span class="p">:,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:])</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span>    <span class="n">Gnambu</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">167</span>    <span class="n">Gnambu</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">168</span>    <span class="n">Gnambu</span><span class="p">[</span><span class="n">Ntot</span><span class="p">:,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="linenos">169</span>    <span class="n">Gnambu</span><span class="p">[</span><span class="n">Ntot</span><span class="p">:,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:])</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span>    <span class="n">Weiss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span>
+<span class="linenos">172</span>        <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Gnambu</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">Snambu</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">173</span>    <span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">Weiss</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:</span><span class="n">Ntot</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Weiss</span><span class="p">[:</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">:,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="k">def</span> <span class="nf">generate_kgrid</span><span class="p">(</span><span class="n">Nk</span><span class="p">):</span>
+<span class="linenos">179</span>    <span class="n">b1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="linenos">180</span>    <span class="n">b2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="linenos">181</span>    <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nk</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nk</span><span class="p">))</span>
+<span class="linenos">182</span>    <span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">/</span> <span class="n">Nk</span>
+<span class="linenos">183</span>    <span class="n">n2</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">/</span> <span class="n">Nk</span>
+<span class="linenos">184</span>    <span class="n">gridout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">n1</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">n2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">185</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">gridout</span><span class="p">,</span> <span class="p">[</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">])</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="k">def</span> <span class="nf">h_square2d</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="linenos">189</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="linenos">190</span>        <span class="o">-</span><span class="mi">2</span>
+<span class="linenos">191</span>        <span class="o">*</span> <span class="n">t</span>
+<span class="linenos">192</span>        <span class="o">*</span> <span class="p">(</span>
+<span class="linenos">193</span>            <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="linenos">194</span>            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="linenos">195</span>        <span class="p">)</span>
+<span class="linenos">196</span>        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">)</span>
+<span class="linenos">197</span>    <span class="p">)</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span><span class="k">def</span> <span class="nf">test_dos</span><span class="p">(</span><span class="n">hk</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="linenos">201</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+<span class="linenos">202</span>        <span class="n">hk</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">203</span>    <span class="p">)</span>  <span class="c1"># normalized to one, I will have to multiply</span>
+<span class="linenos">204</span>    <span class="n">dx</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">205</span>    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span>
+<span class="linenos">206</span>        <span class="s2">&quot;dos.dat&quot;</span><span class="p">,</span>
+<span class="linenos">207</span>        <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+<span class="linenos">208</span>            <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="linenos">209</span>        <span class="p">),</span>
+<span class="linenos">210</span>    <span class="p">)</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span>    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+<span class="linenos">213</span>        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">)</span>
+<span class="linenos">214</span>        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;D(E)&quot;</span><span class="p">)</span>
+<span class="linenos">215</span>        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">216</span>        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">217</span>        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="linenos">218</span>            <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">219</span>        <span class="p">)</span>
+<span class="linenos">220</span>        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span>
+<span class="linenos">223</span><span class="c1"># READ ED INPUT:</span>
+<span class="linenos">224</span><span class="n">ed</span><span class="o">.</span><span class="n">read_input</span><span class="p">(</span><span class="s2">&quot;inputAHM.conf&quot;</span><span class="p">)</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="c1"># Parameters</span>
+<span class="linenos">228</span><span class="n">wmixing</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="linenos">229</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">230</span>    <span class="n">Nk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">231</span><span class="k">except</span><span class="p">:</span>
+<span class="linenos">232</span>    <span class="n">Nk</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span><span class="nb">print</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Uloc</span><span class="p">)</span>
+<span class="linenos">235</span><span class="n">t_hop</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="linenos">236</span>
+<span class="linenos">237</span><span class="c1"># BUILD frequency arrays and k grid:</span>
+<span class="linenos">238</span><span class="n">wm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">ed</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Lmats</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">239</span><span class="n">wr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">wini</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">wfin</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Lreal</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span><span class="n">kgrid</span> <span class="o">=</span> <span class="n">generate_kgrid</span><span class="p">(</span><span class="n">Nk</span><span class="p">)</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span>
+<span class="linenos">244</span><span class="c1"># Generate hk and hloc</span>
+<span class="linenos">245</span><span class="n">Hk</span> <span class="o">=</span> <span class="n">h_square2d</span><span class="p">(</span><span class="n">kgrid</span><span class="p">,</span> <span class="n">t_hop</span><span class="p">)</span>
+<span class="linenos">246</span><span class="n">HkNambu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h_square2d</span><span class="p">(</span><span class="n">kgrid</span><span class="p">,</span> <span class="n">t_hop</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">h_square2d</span><span class="p">(</span><span class="o">-</span><span class="n">kgrid</span><span class="p">,</span> <span class="n">t_hop</span><span class="p">))])</span>
+<span class="linenos">247</span><span class="n">Hloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Hk</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nk</span><span class="o">**</span><span class="mi">2</span>
+<span class="linenos">248</span><span class="n">Hloc</span> <span class="o">=</span> <span class="n">Hloc</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span>
+<span class="linenos">251</span><span class="c1"># Generate dos and plot it</span>
+<span class="linenos">252</span><span class="n">test_dos</span><span class="p">(</span><span class="n">Hk</span><span class="p">)</span>
+<span class="linenos">253</span>
+<span class="linenos">254</span><span class="c1"># SETUP SOLVER</span>
+<span class="linenos">255</span><span class="n">ed</span><span class="o">.</span><span class="n">set_hloc</span><span class="p">(</span><span class="n">Hloc</span><span class="p">)</span>
+<span class="linenos">256</span><span class="n">Nb</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_bath_dimension</span><span class="p">()</span>
+<span class="linenos">257</span><span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">init_solver</span><span class="p">()</span>
+<span class="linenos">258</span><span class="n">bath_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">259</span>
+<span class="linenos">260</span>
+<span class="linenos">261</span><span class="c1"># DMFT CYCLE</span>
+<span class="linenos">262</span><span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">263</span><span class="n">iloop</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">264</span><span class="k">while</span> <span class="ow">not</span> <span class="n">converged</span> <span class="ow">and</span> <span class="n">iloop</span> <span class="o">&lt;</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nloop</span><span class="p">:</span>
+<span class="linenos">265</span>    <span class="n">iloop</span> <span class="o">=</span> <span class="n">iloop</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">266</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DMFT-loop:&quot;</span><span class="p">,</span> <span class="n">iloop</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">Nloop</span><span class="p">)</span>
+<span class="linenos">267</span>
+<span class="linenos">268</span>    <span class="n">ed</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">269</span>
+<span class="linenos">270</span>    <span class="n">Smats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ed</span><span class="o">.</span><span class="n">get_sigma</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">),</span> <span class="n">ed</span><span class="o">.</span><span class="n">get_sigma</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">)])</span>
+<span class="linenos">271</span>    <span class="n">Sreal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="linenos">272</span>        <span class="p">[</span>
+<span class="linenos">273</span>            <span class="n">ed</span><span class="o">.</span><span class="n">build_sigma</span><span class="p">(</span><span class="n">wr</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ed</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">),</span>
+<span class="linenos">274</span>            <span class="n">ed</span><span class="o">.</span><span class="n">build_sigma</span><span class="p">(</span><span class="n">wr</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ed</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">),</span>
+<span class="linenos">275</span>        <span class="p">]</span>
+<span class="linenos">276</span>    <span class="p">)</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span>    <span class="n">Gmats</span> <span class="o">=</span> <span class="n">get_gloc</span><span class="p">(</span><span class="n">wm</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">xmu</span><span class="p">,</span> <span class="n">HkNambu</span><span class="p">,</span> <span class="n">Smats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="linenos">279</span>    <span class="n">Greal</span> <span class="o">=</span> <span class="n">get_gloc</span><span class="p">(</span><span class="n">wr</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ed</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">xmu</span><span class="p">,</span> <span class="n">HkNambu</span><span class="p">,</span> <span class="n">Sreal</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="linenos">280</span>    <span class="n">Weiss</span> <span class="o">=</span> <span class="n">get_weiss_field</span><span class="p">(</span><span class="n">Gmats</span><span class="p">,</span> <span class="n">Smats</span><span class="p">)</span>
+<span class="linenos">281</span>
+<span class="linenos">282</span>    <span class="c1"># Print</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span>    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">285</span>        <span class="k">for</span> <span class="n">ispin</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Nspin</span><span class="p">):</span>
+<span class="linenos">286</span>            <span class="k">for</span> <span class="n">iorb</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ed</span><span class="o">.</span><span class="n">Norb</span><span class="p">):</span>
+<span class="linenos">287</span>                <span class="n">io</span> <span class="o">=</span> <span class="n">iorb</span> <span class="o">+</span> <span class="n">ed</span><span class="o">.</span><span class="n">Norb</span> <span class="o">*</span> <span class="n">ispin</span>
+<span class="linenos">288</span>                <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">]:</span>
+<span class="linenos">289</span>                    <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;real&quot;</span><span class="p">]:</span>
+<span class="linenos">290</span>                        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">291</span>                            <span class="n">typ</span>
+<span class="linenos">292</span>                            <span class="o">+</span> <span class="s2">&quot;_l&quot;</span>
+<span class="linenos">293</span>                            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">iorb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">294</span>                            <span class="o">+</span> <span class="s2">&quot;_s&quot;</span>
+<span class="linenos">295</span>                            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ispin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">296</span>                            <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
+<span class="linenos">297</span>                            <span class="o">+</span> <span class="n">axis</span>
+<span class="linenos">298</span>                            <span class="o">+</span> <span class="s2">&quot;w.dat&quot;</span>
+<span class="linenos">299</span>                        <span class="p">)</span>
+<span class="linenos">300</span>                        <span class="n">comp</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">typ</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span> <span class="k">else</span> <span class="mi">1</span>
+<span class="linenos">301</span>                        <span class="n">Grfx</span> <span class="o">=</span> <span class="n">Gmats</span> <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;i&quot;</span> <span class="k">else</span> <span class="n">Greal</span>
+<span class="linenos">302</span>                        <span class="n">freq</span> <span class="o">=</span> <span class="n">wm</span> <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;i&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">wr</span><span class="p">)</span>
+<span class="linenos">303</span>                        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span>
+<span class="linenos">304</span>                            <span class="n">name</span><span class="p">,</span>
+<span class="linenos">305</span>                            <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+<span class="linenos">306</span>                                <span class="p">[</span>
+<span class="linenos">307</span>                                    <span class="n">freq</span><span class="p">,</span>
+<span class="linenos">308</span>                                    <span class="n">Grfx</span><span class="p">[</span><span class="n">comp</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span>
+<span class="linenos">309</span>                                    <span class="n">Grfx</span><span class="p">[</span><span class="n">comp</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
+<span class="linenos">310</span>                                <span class="p">]</span>
+<span class="linenos">311</span>                            <span class="p">),</span>
+<span class="linenos">312</span>                        <span class="p">)</span>
+<span class="linenos">313</span>
+<span class="linenos">314</span>    <span class="c1"># Fit</span>
+<span class="linenos">315</span>    <span class="n">bath</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">chi2_fitgf</span><span class="p">(</span><span class="n">Weiss</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Weiss</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bath</span><span class="p">)</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span>    <span class="k">if</span> <span class="n">iloop</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">318</span>        <span class="n">bath</span> <span class="o">=</span> <span class="n">wmixing</span> <span class="o">*</span> <span class="n">bath</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">wmixing</span><span class="p">)</span> <span class="o">*</span> <span class="n">bath_prev</span>
+<span class="linenos">319</span>    <span class="n">bath_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">bath</span><span class="p">)</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span>    <span class="n">err</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">check_convergence</span><span class="p">(</span><span class="n">Weiss</span><span class="p">,</span> <span class="n">ed</span><span class="o">.</span><span class="n">dmft_error</span><span class="p">)</span>
+<span class="linenos">322</span>
+<span class="linenos">323</span><span class="n">ed</span><span class="o">.</span><span class="n">finalize_solver</span><span class="p">()</span>
+<span class="linenos">324</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="funcs/5_interaction_matrix_parsing.html" class="btn btn-neutral float-left" title="Interaction matrix parsing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edipack2triqs.html" class="btn btn-neutral float-right" title="TRIQS compatibility layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Lorenzo Crippa and Adriano Amaricci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
