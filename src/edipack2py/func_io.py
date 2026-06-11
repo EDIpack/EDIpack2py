@@ -1006,7 +1006,7 @@ def get_gimp(self, ilat=None, ishape=None, axis="m", typ="n", zeta=None):
 
 
 # gimp
-def get_g0and(self, zeta, bath, ishape=None, typ="n"):
+def get_g0and(self, zeta, bath, ishape=None, typ="n", broadening=0.0):
     """
 
        This function calculates the value of the Anderson Impurity Model's \
@@ -1034,6 +1034,9 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
        :param typ: whether to return the normal or anomalous Green's function \
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
+        
+       :type broadening: float 
+       :param broadening: custom broadening on the real axis.
        
        :raise ValueError: If :code:`zeta` is not completely real or completely \
         imaginary
@@ -1091,6 +1094,10 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
         raise ValueError(
             "get_g0and: frequencies can only be purely real or purely imaginary"
         )
+        
+    if axis == "r":
+        zeta += 1j * broadening        
+        
     if ishape is None:
         ishape = self.dim_hloc + 1
 
@@ -1143,7 +1150,7 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
 
 
 # Delta
-def get_delta(self, zeta, bath, ishape=None, typ="n"):
+def get_delta(self, zeta, bath, ishape=None, typ="n", broadening = 0.0):
     """
 
        This function calculates the value of the Anderson Impurity Model's \
@@ -1171,6 +1178,9 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
        :param typ: whether to return the normal or anomalous Green's function \
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
+        
+       :type broadening: float 
+       :param broadening: custom broadening on the real axis.       
        
        :raise ValueError: If :code:`zeta` is not completely real or completely \
         imaginary
@@ -1228,6 +1238,11 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
         raise ValueError(
             "get_delta: frequencies can only be purely real or purely imaginary"
         )
+        
+    if axis == "r":
+        zeta += 1j * broadening
+            
+    
     if ishape is None:
         ishape = self.dim_hloc + 1
 
