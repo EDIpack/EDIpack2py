@@ -264,14 +264,14 @@ def get_phi(self, ilat=None, iorb=None, jorb=None, component=None):
 
     ed_get_phisc_n2_wrap = self.library.ed_get_phisc_n2
     ed_get_phisc_n2_wrap.argtypes = [
-        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
-    ]
+        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")
+    ]  # self
     ed_get_phisc_n2_wrap.restype = None
 
     ed_get_argsc_n2_wrap = self.library.ed_get_argsc_n2
     ed_get_argsc_n2_wrap.argtypes = [
-        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
-    ]
+        np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")
+    ]  # self
     ed_get_argsc_n2_wrap.restype = None
 
     if self.has_ineq:
@@ -284,8 +284,8 @@ def get_phi(self, ilat=None, iorb=None, jorb=None, component=None):
 
         ed_get_argsc_n3_wrap = self.library.ed_get_argsc_n3
         ed_get_argsc_n3_wrap.argtypes = [
-            np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")  # self
-        ]
+            np.ctypeslib.ndpointer(dtype=float, ndim=2, flags="F_CONTIGUOUS")
+        ]  # self
         ed_get_argsc_n3_wrap.restype = None
 
     if self.Nineq == 0:
@@ -1014,7 +1014,7 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
 
        :type zeta: complex 
        :param zeta: the array of frequencies (only frequencies on the real and \
-        imaginary axes are supported)
+        imaginary axes are supported. For the real axis, broadening must be included.)
        
        :type bath: float
        :param bath: the user-accessible bath array  
@@ -1034,7 +1034,7 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
        :param typ: whether to return the normal or anomalous Green's function \
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
-       
+               
        :raise ValueError: If :code:`zeta` is not completely real or completely \
         imaginary
        :raise ValueError: If :code:`ishape` is not 3 or 5.
@@ -1089,8 +1089,9 @@ def get_g0and(self, zeta, bath, ishape=None, typ="n"):
         axis = "m"
     else:
         raise ValueError(
-            "get_g0and: frequencies can only be purely real or purely imaginary"
+            "get_g0and: frequencies can only be real (plus broadening) or Matsubara"
         )
+
     if ishape is None:
         ishape = self.dim_hloc + 1
 
@@ -1151,7 +1152,7 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
 
        :type zeta: complex 
        :param zeta: the array of frequencies (only frequencies on the real and \
-        imaginary axes are supported)   
+        imaginary axes are supported. For the real axis, broadening must be included.)   
 
        :type bath: float
        :param bath: the user-accessible bath array  
@@ -1171,7 +1172,7 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
        :param typ: whether to return the normal or anomalous Green's function \
         (for the superconducting case). Can be :code:`n` for normal or :code:`a`\
         for anomalous.
-       
+               
        :raise ValueError: If :code:`zeta` is not completely real or completely \
         imaginary
        :raise ValueError: If :code:`ishape` is not 3 or 5.
@@ -1226,8 +1227,9 @@ def get_delta(self, zeta, bath, ishape=None, typ="n"):
         axis = "m"
     else:
         raise ValueError(
-            "get_delta: frequencies can only be purely real or purely imaginary"
+            "get_delta: frequencies can only be real (plus broadening) or Matsubara"
         )
+
     if ishape is None:
         ishape = self.dim_hloc + 1
 
@@ -1539,9 +1541,9 @@ def get_dimp(self, zeta=None, axis=None):
 
     aux_Lmats = ct.c_int.in_dll(self.library, "Lmats").value
     aux_Lreal = ct.c_int.in_dll(self.library, "Lreal").value
-    
+
     zetaflag = 1
-    
+
     if axis is None:
         raise ValueError("Axis is required")
     else:
