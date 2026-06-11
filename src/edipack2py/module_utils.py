@@ -73,11 +73,17 @@ class dynamic_library_interface:
     # init class
     def __init__(self, library):
         self.library = library
+        #check ineq support
         try:
             self.has_ineq = bool(ct.c_int.in_dll(self.library, "has_ineq").value)
         except Exception:
             self.has_ineq = None
             print("Cannot init dynamic_library_interface class: invalid library")
+        #check complex normal support
+        try:
+            self.normal_complex_enabled = bool(ct.c_int.in_dll(self.library, "normal_complex").value)
+        except Exception:
+            self.normal_complex_enabled = False      
         self.Nineq = None
         self.dim_hloc = 0
         self.Nsym = None
