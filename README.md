@@ -1,6 +1,6 @@
 # EDIpack2py: A Python module for the EDIpack Quantum Impurity Solver
 [![api docs](https://img.shields.io/static/v1?label=API&message=documentation&color=734f96&logo=read-the-docs&logoColor=white&style=flat-square)](https://edipack.github.io/EDIpack2py/)
-[![PyPI](https://img.shields.io/pypi/v/edipack2py.svg)](https://pypi.org/project/edipack2py)
+[![PyPI](https://img.shields.io/pypi/v/edipack2py.svg?logoColor=white&style=flat-square)](https://pypi.org/project/edipack2py)
 [![Anaconda-Server Badge](https://anaconda.org/edipack/edipack/badges/version.svg)](https://anaconda.org/edipack/edipack)
 
 A Python module interfacing to [EDIpack](https://github.com/edipack/EDIpack), 
