@@ -692,10 +692,14 @@ def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
 
     def pack(vals, order, bathtype):
         if bathtype > 2:
+            # replica/general: Fortran layout is
+            # [Nsym, v_1, lambda_1, v_2, lambda_2, ...], i.e. one
+            # (v, lambda) block per replica, not all v then all lambda.
+            v = np.reshape(vals["v"], (Nbath, -1))  # (Nbath, nso)
+            l = np.reshape(vals["l"], (Nbath, -1))  # (Nbath, Nsym)
+            blocks = [np.concatenate([v[i], l[i]]) for i in range(Nbath)]
             return {
-                "bath": np.ascontiguousarray(
-                    np.concatenate([[Nsym]] + [flat(vals[k]) for k in order])
-                )
+                "bath": np.ascontiguousarray(np.concatenate([[Nsym]] + blocks))
             }
         else:
             return {
@@ -704,7 +708,17 @@ def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
                 )
             }
 
-    def unpack(b, spec):
+    def unpack(b, spec, bathtype):
+        if bathtype > 2:
+            # inverse of the per-replica layout used in pack
+            vshape = spec["fields"]["v"]
+            nso = int(np.prod(vshape)) // Nbath
+            step = nso + Nsym
+            blocks = np.reshape(b[: Nbath * step], (Nbath, step))
+            return {
+                "v": np.ascontiguousarray(blocks[:, :nso].reshape(vshape)),
+                "l": np.ascontiguousarray(blocks[:, nso:]),
+            }
         out = {}
         i = 0
         for name, shape in spec["fields"].items():
@@ -802,5 +816,5 @@ def bath_inspect(self, bath=None, e=None, v=None, d=None, u=None, l=None):
             if bath[0] != Nsym:
                 raise ValueError("bath_inspect: bath[0] is not Nsym")
             bath = bath[1:]
-        result = unpack(bath, spec)
+        result = unpack(bath, spec, key[1])
         return {k: result[k] for k in spec["order"]}
